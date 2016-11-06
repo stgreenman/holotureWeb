@@ -1,0 +1,22 @@
+.row {
+  display: flex;
+  flex-direction: row;
+  border-bottom: solid;
+  border-width: $border-width;
+  min-width: 100%;
+}
+
+.image {
+  width: 100px;
+  height: 100px;
+  border-style: solid;
+  border-width: $border-width;
+}
+
+.descriptive-text {
+  text-align: center;
+}
+
+.text-title {
+
+}
