@@ -4,6 +4,15 @@
   border-bottom: solid;
   border-width: $border-width;
   min-width: 100%;
+  cursor: pointer;
+  &:hover {
+    background-color: $light-grey;
+  }
+}
+
+.selected-row {
+  @extend .row;
+  background-color: $dark-grey;
 }
 
 .image {
