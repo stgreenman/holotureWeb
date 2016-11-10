@@ -8,9 +8,11 @@ var ProductRow = React.createClass({
   },
   getDefaultProps: function() {
     return {
-      imageSrc: "https://ak1.ostkcdn.com/images/products/11706636/P18629716.jpg",
-      productTitle: "Couch",
-      productDescription: "This couch is an excellent choice because it's just so darn comfortable"
+            product: {
+              imageSrc: "https://ak1.ostkcdn.com/images/products/11706636/P18629716.jpg",
+              title: "Couch",
+              description: "This couch is an excellent choice because it's just so darn comfortable"
+            }
     }
   },
   onClick: function() {
@@ -25,7 +27,7 @@ var ProductRow = React.createClass({
     });
   },
   render: function() {
-    var {imageSrc, productTitle, productDescription} = this.props;
+    var {product} = this.props;
     var {isSelected} = this.state;
 
     var containerClassName;
@@ -38,10 +40,10 @@ var ProductRow = React.createClass({
 
     return (
       <div className={containerClassName} onClick={this.onClick}>
-        <img src={imageSrc} className="image"></img>
+        <img src={product.imageSrc} className="image"></img>
         <div className="descriptive-text">
-          <h5>{productTitle}</h5>
-          <p>{productDescription}</p>
+          <h5>{product.title}</h5>
+          <p>{product.description}</p>
         </div>
       </div>
     );
