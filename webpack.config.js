@@ -24,6 +24,7 @@ module.exports = {
 		alias: {
 			Main: "app/components/Main.jsx",
       Nav: "app/components/Nav.jsx",
+      Footer: "app/components/Footer.jsx",
       CatalogToFolder: "app/components/CatalogToFolder",
       Catalog: "app/components/Catalog",
       Folder: "app/components/Folder",
