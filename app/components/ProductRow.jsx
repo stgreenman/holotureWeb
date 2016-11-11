@@ -9,6 +9,7 @@ var ProductRow = React.createClass({
   getDefaultProps: function() {
     return {
             product: {
+              id: 0,
               imageSrc: "https://ak1.ostkcdn.com/images/products/11706636/P18629716.jpg",
               title: "Couch",
               description: "This couch is an excellent choice because it's just so darn comfortable"
@@ -25,6 +26,7 @@ var ProductRow = React.createClass({
     this.setState({
       isSelected: setSelected
     });
+    this.props.onSelected(this.props.product.id, "catalog", setSelected);
   },
   render: function() {
     var {product} = this.props;
