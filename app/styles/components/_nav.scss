@@ -1,11 +1,18 @@
 .top-bar, .top-bar ul {
 	background-color: $nav-background;
 }
-
+.top-bar-left {
+	padding-top: 10px;
+	padding-left: 15px;
+}
+.topbar-right{
+	padding-top: 10px;
+	padding-right: 10px;
+}
 .top-bar {
-
 	.menu-text {
 		color: $nav-text-color;
+		font: $navFont
 	}
 
 	.menu > .menu-text > a {
@@ -16,5 +23,8 @@
 	.active-link {
 		font-weight: bold;
 	}
-	
+
+	.inverted {
+		filter: invert(100%);
+	}
 }
