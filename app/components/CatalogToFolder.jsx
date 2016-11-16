@@ -28,11 +28,14 @@ var CatalogToFolder = React.createClass({
     };
   },
   addToFolder: function() {
-    folderProducts = folderProducts.concat(catalogProducts.filter(function(product) {
-      return product.selected;
-    }));
-    catalogProducts = catalogProducts.filter(function(product) {
-      return ! product.selected;
+    var selected = catalogProducts.filter(function(product) {
+                      var isSelected = product.selected;
+                      product.selected = false;
+                      return isSelected;
+                    });
+    folderProducts = folderProducts.concat(selected);
+    catalogProducts = catalogProducts.filter(function(n) {
+      return selected.indexOf(n) == -1;
     });
     this.setState({
       folderProducts: folderProducts,
@@ -40,11 +43,14 @@ var CatalogToFolder = React.createClass({
     });
   },
   removeFromFolder: function() {
-    catalogProducts = catalogProducts.concat(folderProducts.filter(function(product) {
-      return product.selected;
-    }));
-    folderProducts = folderProducts.filter(function(product) {
-      return ! product.selected;
+    var selected = folderProducts.filter(function(product) {
+                      var isSelected = product.selected;
+                      product.selected = false;
+                      return isSelected;
+                    });
+    catalogProducts = catalogProducts.concat(selected);
+    folderProducts = folderProducts.filter(function(n) {
+      return selected.indexOf(n) == -1;
     });
     this.setState({
       folderProducts: folderProducts,
@@ -58,7 +64,13 @@ var CatalogToFolder = React.createClass({
           product.selected = setSelected;
         }
       });
-      console.log(catalogProducts);
+    }
+    else if (type === "folder") {
+      folderProducts.map(function(product) {
+        if (product.id === id) {
+          product.selected = setSelected;
+        }
+      });
     }
   },
   render: function() {
@@ -70,7 +82,7 @@ var CatalogToFolder = React.createClass({
           <button type="button" className="success button" onClick={this.addToFolder}>Add</button>
           <button type="button" className="alert button" onClick={this.removeFromFolder}>Remove</button>
         </div>
-        <Folder products={folderProducts} />
+        <Folder products={folderProducts} onSelected={this.onSelected}/>
       </div>
     );
   }

@@ -9,7 +9,7 @@ var Catalog = React.createClass({
     var {products} = this.props;
 
     var productList = products.map(function(product) {
-      return <ProductRow key={product.id} product={product} onSelected={this.onSelected}/>;
+      return <ProductRow key={product.id} product={product} onSelected={this.onSelected} type="catalog"/>;
     }, this);
 
     return (
