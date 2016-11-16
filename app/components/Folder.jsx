@@ -13,8 +13,10 @@ var Folder = React.createClass({
     }, this);
 
     return (
-      <div className="folder-container">
+      <div className="folder-card">
+        <div>
         { productList }
+        </div>
       </div>
     );
   }

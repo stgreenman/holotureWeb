@@ -77,12 +77,19 @@ var CatalogToFolder = React.createClass({
     var {catalogProducts, folderProducts} = this.state;
     return (
       <div className="container">
-        <Catalog products={catalogProducts} onSelected={this.onSelected}/>
-        <div className="buttons">
-          <button type="button" className="success button" onClick={this.addToFolder}>Add</button>
-          <button type="button" className="alert button" onClick={this.removeFromFolder}>Remove</button>
+        <div className="large-6 columns">
+          <Catalog products={catalogProducts} onSelected={this.onSelected}/>
         </div>
-        <Folder products={folderProducts} onSelected={this.onSelected}/>
+        <div className="small-2 columns vertical-alignment">
+
+          <div className="buttons">
+            <button type="button" className="success button" onClick={this.addToFolder}>Add</button>
+            <button type="button" className="alert button" onClick={this.removeFromFolder}>Remove</button>
+          </div>
+        </div>
+        <div className="large-6 columns">
+          <Folder products={folderProducts} onSelected={this.onSelected}/>
+        </div>
       </div>
     );
   }

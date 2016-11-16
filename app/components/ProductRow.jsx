@@ -43,13 +43,19 @@ var ProductRow = React.createClass({
     }
 
     return (
+
       <div className={containerClassName} onClick={this.onClick}>
+        <div className="container">
+          <div className="large-4 columns">
         <img src={product.imageSrc} className="image"></img>
-        <div className="descriptive-text">
+        </div>
+        <div className="descriptive-text large-6 columns">
           <h5>{product.title}</h5>
           <p>{product.description}</p>
         </div>
       </div>
+      </div>
+
     );
   }
 });

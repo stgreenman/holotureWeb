@@ -7,10 +7,10 @@ var Main = (props) => {
 		return (
 			<div>
 				<Nav/>
+				<Footer/>
 				<div>
 					<div>
 						<CatalogToFolder/>
-						<Footer/>
 					</div>
 				</div>
 

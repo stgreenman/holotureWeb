@@ -3,8 +3,10 @@
   flex-direction: row;
   border-bottom: solid;
   border-width: $border-width;
+  border-color: $border-color;
   min-width: 100%;
   cursor: pointer;
+  text-align: center;
   &:hover {
     background-color: $light-grey;
   }
@@ -18,7 +20,7 @@
 .image {
   width: 100px;
   height: 100px;
-  border-style: solid;
+  //border-right: solid;
   border-width: $border-width;
 }
 
@@ -28,4 +30,21 @@
 
 .text-title {
 
+}
+
+.productrow-padding{
+  padding-left: 5px;
+  //padding-bottom: 10%;
+  padding-top: 10%;
+}
+.product-card{
+  margin: 0 0 2em;
+  background: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+  border-bottom: 1px solid #DFDFDF;
+  position: relative;
+  vertical-align: top;
+  display: inline-block;
+  //  width: 200px;
+    text-align: center;
 }

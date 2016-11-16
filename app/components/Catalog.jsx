@@ -13,8 +13,10 @@ var Catalog = React.createClass({
     }, this);
 
     return (
-      <div className="catalog-container">
-        { productList }
+      <div className="catalog-card">
+        <div>
+          { productList }
+        </div>
       </div>
     );
   }
