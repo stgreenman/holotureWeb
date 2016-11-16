@@ -21,10 +21,18 @@ var catalogProducts = [
 var folderProducts = [];
 
 var CatalogToFolder = React.createClass({
+  sortByTitle: function(a, b) {
+    if (a.title > b.title)
+      return 1;
+    if (a.title < b.title)
+      return -1;
+
+    return 0;
+  },
   getInitialState: function() {
     return {
-      catalogProducts: catalogProducts,
-      folderProducts: folderProducts,
+      catalogProducts: catalogProducts.sort(this.sortByTitle),
+      folderProducts: folderProducts.sort(this.sortByTitle),
     };
   },
   addToFolder: function() {
@@ -37,6 +45,8 @@ var CatalogToFolder = React.createClass({
     catalogProducts = catalogProducts.filter(function(n) {
       return selected.indexOf(n) == -1;
     });
+    folderProducts.sort(this.sortByTitle);
+    catalogProducts.sort(this.sortByTitle);
     this.setState({
       folderProducts: folderProducts,
       catalogProducts: catalogProducts
@@ -52,6 +62,8 @@ var CatalogToFolder = React.createClass({
     folderProducts = folderProducts.filter(function(n) {
       return selected.indexOf(n) == -1;
     });
+    folderProducts.sort(this.sortByTitle);
+    catalogProducts.sort(this.sortByTitle);
     this.setState({
       folderProducts: folderProducts,
       catalogProducts: catalogProducts
@@ -78,6 +90,8 @@ var CatalogToFolder = React.createClass({
     return (
       <div className="container">
         <div className="large-6 columns">
+          <h5 className="title">Catalog</h5>
+          <hr/>
           <Catalog products={catalogProducts} onSelected={this.onSelected}/>
         </div>
         <div className="small-2 columns vertical-alignment">
@@ -88,6 +102,8 @@ var CatalogToFolder = React.createClass({
           </div>
         </div>
         <div className="large-6 columns">
+          <h5 className="title">Folder</h5>
+          <hr/>
           <Folder products={folderProducts} onSelected={this.onSelected}/>
         </div>
       </div>

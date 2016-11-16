@@ -6,7 +6,9 @@
   border-color: $border-color;
   min-width: 100%;
   cursor: pointer;
-  text-align: center;
+  vertical-align: middle;
+  max-height: 125px;
+  background: white;
   &:hover {
     background-color: $light-grey;
   }
@@ -20,23 +22,13 @@
 .image {
   width: 100px;
   height: 100px;
+  border-radius: 50%;
   //border-right: solid;
   border-width: $border-width;
+  padding: 10px;
 }
 
-.descriptive-text {
-  text-align: center;
-}
 
-.text-title {
-
-}
-
-.productrow-padding{
-  padding-left: 5px;
-  //padding-bottom: 10%;
-  padding-top: 10%;
-}
 .product-card{
   margin: 0 0 2em;
   background: white;
@@ -47,4 +39,17 @@
   display: inline-block;
   //  width: 200px;
     text-align: center;
+}
+
+.row-title {
+  text-align: left;
+  padding-left: 10px;
+  padding-right: 5px;
+  margin-bottom: auto;
+}
+
+.row-description {
+  @extend .row-title;
+  color: $darkest-grey;
+  font-size: .88em;
 }

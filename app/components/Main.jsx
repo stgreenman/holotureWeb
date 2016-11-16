@@ -5,7 +5,7 @@ var Footer = require('Footer');
 
 var Main = (props) => {
 		return (
-			<div>
+			<div className="background-grey">
 				<Nav/>
 				<Footer/>
 				<div>

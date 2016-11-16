@@ -5,16 +5,16 @@
   // min-width: 40%;
   // border-style: solid;
   // border-width: $border-width;
-  background-color: white;
+  background-color: $light-grey;
 }
 .catalog-card {
-margin: 0 0 2em;
-background: white;
-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
-border-bottom: 1px solid #DFDFDF;
-position: relative;
-vertical-align: top;
-display: inline-block;
+  margin: 0 0 2em;
+  background: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+  border-bottom: 1px solid #DFDFDF;
+  position: relative;
+  vertical-align: top;
+  display: inline-block;
 //  width: 200px;
   text-align: center;
   background-color: #F7F2F1;

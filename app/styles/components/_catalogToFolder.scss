@@ -12,17 +12,23 @@
   margin-left: $margin;
   margin-right: $margin;
 }
+
 .card {
   margin: 0 0 2em;
-background: white;
-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
-border-bottom: 1px solid #DFDFDF;
-position: relative;
-vertical-align: top;
-display: inline-block;
+  background: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+  border-bottom: 1px solid #DFDFDF;
+  position: relative;
+  vertical-align: top;
+  display: inline-block;
 //  width: 200px;
   text-align: center;
 }
+
 .vertical-alignment{
   padding-top: 8%
+}
+
+h5 {
+  color: $darkest-grey;
 }
