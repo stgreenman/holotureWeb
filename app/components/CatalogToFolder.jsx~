@@ -30,6 +30,13 @@ var catalogProducts = [
                   title: "Love seat",
                   description: "This love seat is a perfect choice as an accent chair.",
                   selected: false
+                },
+                {
+                  id: 5,
+                  imageSrc: "https://s3-us-west-2.amazonaws.com/holoture/LoveSeat/loveseat.png",
+                  title: "Love seat",
+                  description: "This love seat is a perfect choice as an accent chair.",
+                  selected: false
                 }
               ];
 var folderProducts = [];
