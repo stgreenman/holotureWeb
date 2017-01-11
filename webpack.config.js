@@ -28,7 +28,7 @@ module.exports = {
       CatalogToFolder: "app/components/CatalogToFolder",
       Catalog: "app/components/Catalog",
       Folder: "app/components/Folder",
-      ProductRow: "app/components/ProductRow",
+      ProductCard: "app/components/ProductCard",
 			applicationStyles: 'app/styles/app.scss',
 		},
     extensions: ['', '.js', '.jsx']

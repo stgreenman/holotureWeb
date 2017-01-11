@@ -47,6 +47,7 @@ var CatalogToFolder = React.createClass({
     });
     folderProducts.sort(this.sortByTitle);
     catalogProducts.sort(this.sortByTitle);
+    this.props.onAdded(selected);
     this.setState({
       folderProducts: folderProducts,
       catalogProducts: catalogProducts
@@ -64,6 +65,7 @@ var CatalogToFolder = React.createClass({
     });
     folderProducts.sort(this.sortByTitle);
     catalogProducts.sort(this.sortByTitle);
+    this.props.onRemoved(selected);
     this.setState({
       folderProducts: folderProducts,
       catalogProducts: catalogProducts
@@ -89,23 +91,7 @@ var CatalogToFolder = React.createClass({
     var {catalogProducts, folderProducts} = this.state;
     return (
       <div className="container">
-        <div className="large-6 columns">
-          <h5 className="title">Catalog</h5>
-          <hr/>
           <Catalog products={catalogProducts} onSelected={this.onSelected}/>
-        </div>
-        <div className="small-2 columns vertical-alignment">
-
-          <div className="buttons">
-            <button type="button" className="success button" onClick={this.addToFolder}>Add</button>
-            <button type="button" className="alert button" onClick={this.removeFromFolder}>Remove</button>
-          </div>
-        </div>
-        <div className="large-6 columns">
-          <h5 className="title">Folder</h5>
-          <hr/>
-          <Folder products={folderProducts} onSelected={this.onSelected}/>
-        </div>
       </div>
     );
   }

@@ -28,3 +28,18 @@
 		filter: invert(100%);
 	}
 }
+.item-count-wrapper {
+	// padding-bottom: 4rem;
+}
+.item-count {
+	align-items: center;
+	background-color: red;
+	height: 1.5rem;
+	justify-content: center;
+	width: 1.5rem;
+	border-radius: 50%;
+	z-index: 1000;
+	display: flex;
+	// margin-bottom: 1rem;
+	// padding-bottom: 4rem;
+}

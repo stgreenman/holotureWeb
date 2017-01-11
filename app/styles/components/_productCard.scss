@@ -1,13 +1,11 @@
 .row {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   border-bottom: solid;
   border-width: $border-width;
   border-color: $border-color;
-  min-width: 100%;
+  min-height: 100%;
   cursor: pointer;
-  vertical-align: middle;
-  max-height: 125px;
   background: white;
   &:hover {
     background-color: $light-grey;
@@ -20,8 +18,8 @@
 }
 
 .image {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   //border-right: solid;
   border-width: $border-width;
@@ -38,18 +36,12 @@
   vertical-align: top;
   display: inline-block;
   //  width: 200px;
-    text-align: center;
+  text-align: center;
 }
 
 .row-title {
-  text-align: left;
-  padding-left: 10px;
-  padding-right: 5px;
-  margin-bottom: auto;
-}
-
-.row-description {
-  @extend .row-title;
-  color: $darkest-grey;
-  font-size: .88em;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 12pt;
+  font-weight: bolder;
 }

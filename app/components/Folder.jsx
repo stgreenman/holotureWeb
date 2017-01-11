@@ -1,5 +1,5 @@
 var React = require('react');
-var ProductRow = require('ProductRow');
+var ProductCard = require('ProductCard');
 
 var Folder = React.createClass({
   onSelected: function(id, type, setSelected) {
@@ -9,7 +9,7 @@ var Folder = React.createClass({
     var {products} = this.props;
 
     var productList = products.map(function(product) {
-      return <ProductRow key={product.id} product={product} onSelected={this.onSelected} type="folder"/>;
+      return <ProductCard key={product.id} product={product} onSelected={this.onSelected} type="folder"/>;
     }, this);
 
     return (

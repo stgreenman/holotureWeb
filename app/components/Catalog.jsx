@@ -1,5 +1,5 @@
 var React = require('react');
-var ProductRow = require('ProductRow');
+var ProductCard = require('ProductCard');
 
 var Catalog = React.createClass({
   onSelected: function(id, type, setSelected) {
@@ -9,14 +9,12 @@ var Catalog = React.createClass({
     var {products} = this.props;
 
     var productList = products.map(function(product) {
-      return <ProductRow key={product.id} product={product} onSelected={this.onSelected} type="catalog"/>;
+      return <ProductCard key={product.id} product={product} onSelected={this.onSelected} type="catalog"/>;
     }, this);
 
     return (
-      <div className="catalog-card">
-        <div>
-          { productList }
-        </div>
+      <div>
+        { productList }
       </div>
     );
   }

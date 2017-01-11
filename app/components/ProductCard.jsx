@@ -1,6 +1,6 @@
 var React = require('react');
 
-var ProductRow = React.createClass({
+var ProductCard = React.createClass({
   getInitialState: function() {
     return {
       isSelected: false,
@@ -43,19 +43,14 @@ var ProductRow = React.createClass({
     }
 
     return (
-
-      <div className={containerClassName} onClick={this.onClick}>
-        <div className="container">
+      <div className="catalog-card">
+        <div className={containerClassName} onClick={this.onClick}>
+          <p className="row-title">{product.title}</p>
           <img src={product.imageSrc} className="image"></img>
-          <div className="descriptive-text">
-            <p className="row-title">{product.title}</p>
-            <p className="row-description">{product.description}</p>
-          </div>
         </div>
       </div>
-
     );
   }
 });
 
-module.exports = ProductRow;
+module.exports = ProductCard;
