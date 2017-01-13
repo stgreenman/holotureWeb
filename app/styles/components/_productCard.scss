@@ -4,9 +4,10 @@
   border-bottom: solid;
   border-width: $border-width;
   border-color: $border-color;
-  min-height: 100%;
   cursor: pointer;
   background: white;
+  width: 200px;
+  height: 250px;
   &:hover {
     background-color: $light-grey;
   }
@@ -23,7 +24,9 @@
   border-radius: 50%;
   //border-right: solid;
   border-width: $border-width;
-  padding: 10px;
+  padding: 0 10px 10px 10px;
+  display: block;
+  margin: auto;
 }
 
 
@@ -41,7 +44,10 @@
 
 .row-title {
   text-align: center;
-  margin-bottom: 2rem;
   font-size: 12pt;
   font-weight: bolder;
+  text-wrap: normal;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 1rem;
 }

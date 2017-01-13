@@ -1,6 +1,7 @@
 var React = require('react');
 var Catalog = require('Catalog');
 var Folder = require('Folder');
+var Sidebar = require('Sidebar');
 
 var catalogProducts = [
                 {
@@ -16,7 +17,42 @@ var catalogProducts = [
                   title: "Love seat",
                   description: "This love seat is a perfect choice as an accent chair.",
                   selected: false
-                }
+                },
+                {
+                  id: 3,
+                  imageSrc: "https://s3-us-west-2.amazonaws.com/holoture/LoveSeat/loveseat.png",
+                  title: "Other Love seat",
+                  description: "This love seat is a perfect choice as an accent chair.",
+                  selected: false
+                },
+                {
+                  id: 4,
+                  imageSrc: "https://s3-us-west-2.amazonaws.com/holoture/LoveSeat/loveseat.png",
+                  title: "One more Love seat",
+                  description: "This love seat is a perfect choice as an accent chair.",
+                  selected: false
+                },
+                {
+                  id: 5,
+                  imageSrc: "https://s3-us-west-2.amazonaws.com/holoture/WestElmCouch/westelm.png",
+                  title: "Another Westelm Sofa",
+                  description: "This couch is an excellent choice because it's just so darn comfortable!",
+                  selected: false
+                },
+                {
+                  id: 6,
+                  imageSrc: "https://s3-us-west-2.amazonaws.com/holoture/WestElmCouch/westelm.png",
+                  title: "Sofa",
+                  description: "This couch is an excellent choice because it's just so darn comfortable!",
+                  selected: false
+                },
+                {
+                  id: 7,
+                  imageSrc: "https://s3-us-west-2.amazonaws.com/holoture/WestElmCouch/westelm.png",
+                  title: "Westelm Sofa",
+                  description: "This couch is an excellent choice because it's just so darn comfortable!",
+                  selected: false
+                },
               ];
 var folderProducts = [];
 
@@ -90,7 +126,7 @@ var CatalogToFolder = React.createClass({
   render: function() {
     var {catalogProducts, folderProducts} = this.state;
     return (
-      <div className="container">
+      <div>
           <Catalog products={catalogProducts} onSelected={this.onSelected}/>
       </div>
     );

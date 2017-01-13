@@ -12,3 +12,10 @@
 .background-grey {
   background: $main-background;
 }
+
+.container {
+  display: flex;
+  flex-direction: row;
+  min-height: 100%;
+  margin-top: $margin;
+}

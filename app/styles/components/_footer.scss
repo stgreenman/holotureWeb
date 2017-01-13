@@ -8,8 +8,8 @@
 
 
 .footer {
-  position: fixed;
-  bottom: 0px;
+  position: absolute;
+  bottom: 0;
   width: 100%;
   background-color: $nav-background;
   text-align: center;

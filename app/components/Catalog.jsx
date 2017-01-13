@@ -9,11 +9,11 @@ var Catalog = React.createClass({
     var {products} = this.props;
 
     var productList = products.map(function(product) {
-      return <ProductCard key={product.id} product={product} onSelected={this.onSelected} type="catalog"/>;
+      return <ProductCard key={product.id} product={product} onSelected={this.onSelected} type="catalog" className="product-card"/>;
     }, this);
 
     return (
-      <div>
+      <div className="center-content">
         { productList }
       </div>
     );

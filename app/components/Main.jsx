@@ -31,10 +31,17 @@ var Main = React.createClass({
 		return (
 			<div className="background-grey">
 				<Nav itemCount={itemCount} />
-				<Footer/>
-				<div>
-					<div>
-						<CatalogToFolder onAdded={this.onAdded} onRemoved={this.onRemoved}/>
+				<div className="ui visible sidebar">
+					<a className="item">
+						Home
+					</a>
+				</div>
+				<div className="pusher">
+					<div className="container">
+						<div className="five column centered">
+							<CatalogToFolder onAdded={this.onAdded} onRemoved={this.onRemoved}/>
+						</div>
+						<Footer/>
 					</div>
 				</div>
 
