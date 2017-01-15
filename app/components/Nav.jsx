@@ -15,10 +15,8 @@ var Nav = React.createClass({
 
 					<ul className="menu">
 						<li className="menu-text">
+						<span className="item-count">{ itemCount }</span>
 						<img src="https://s3-us-west-2.amazonaws.com/holoture/images/icon-folder.png" alt="folder icon" height="40" width="40" ></img>	Logan's Folder
-						<div className="item-count-wrapper">
-							<div className="item-count">{ itemCount }</div>
-						</div>
 						</li>
 					</ul>
 				</div>

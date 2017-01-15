@@ -5,8 +5,9 @@ var {Route, Router, IndexRoute, hashHistory} = require('react-router');
 var Main = require('Main');
 
 // Load foundation
-require('style!css!foundation-sites/dist/foundation.min.css');
+require('style!css!foundation-sites/dist/css/foundation.min.css');
 $(document).foundation();
+// require('style!css!semantic/dist/semantic.min.css');
 
 // App css
 require('style!css!sass!applicationStyles');
