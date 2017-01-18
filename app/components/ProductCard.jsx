@@ -1,4 +1,5 @@
 var React = require('react');
+var ProductModal = require('ProductModal');
 
 var ProductCard = React.createClass({
   getInitialState: function() {
@@ -17,22 +18,12 @@ var ProductCard = React.createClass({
             type: undefined
     }
   },
-  onClick: function() {
-    var {isSelected} = this.state;
-    var setSelected = true;
-    if (isSelected) {
-      setSelected = false;
-    }
-
-    this.setState({
-      isSelected: setSelected
-    });
-    var {type} = this.props;
-    this.props.onSelected(this.props.product.id, type, setSelected);
+  handleOnClick: function() {
+    this.props.openModal(this.props.product.id);
   },
   render: function() {
     var {product} = this.props;
-    var {isSelected} = this.state;
+    var {isSelected, open} = this.state;
 
     var containerClassName;
     if (isSelected) {
@@ -44,7 +35,7 @@ var ProductCard = React.createClass({
 
     return (
       <div className="catalog-card">
-        <div className={containerClassName} onClick={this.onClick}>
+        <div className={containerClassName} onClick={this.handleOnClick}>
           <p className="row-title">{product.title}</p>
           <img src={product.imageSrc} className="image"></img>
         </div>

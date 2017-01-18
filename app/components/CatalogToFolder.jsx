@@ -1,7 +1,8 @@
 var React = require('react');
 var Catalog = require('Catalog');
-var Folder = require('Folder');
-var Sidebar = require('Sidebar');
+var ProductModal = require('ProductModal');
+var ProductCard = require('ProductCard');
+var _ = require('lodash');
 
 var catalogProducts = [
                 {
@@ -68,7 +69,8 @@ var CatalogToFolder = React.createClass({
   getInitialState: function() {
     return {
       catalogProducts: catalogProducts.sort(this.sortByTitle),
-      folderProducts: folderProducts.sort(this.sortByTitle),
+      open: false,
+      selectedProduct: null,
     };
   },
   addToFolder: function() {
@@ -123,11 +125,41 @@ var CatalogToFolder = React.createClass({
       });
     }
   },
+  handleOpenModal: function(productId) {
+    var toggleOpen = ! this.state.open;
+    const productIndex = _.findIndex(catalogProducts, { id: productId });
+    console.log("productIndex", productIndex);
+    this.setState({
+      open: toggleOpen,
+      selectedProduct: catalogProducts[productIndex],
+    });
+  },
+  handleCloseModal: function() {
+    this.setState({ open: false });
+  },
   render: function() {
-    var {catalogProducts, folderProducts} = this.state;
+    var {catalogProducts, folderProducts, open, selectedProduct } = this.state;
+
+    var productList = catalogProducts.map(function(product) {
+      return <ProductCard
+                key={product.id}
+                product={product}
+                type="catalog"
+                className="product-card"
+                openModal={this.handleOpenModal}
+                />;
+    }, this);
+
     return (
       <div>
-          <Catalog products={catalogProducts} onSelected={this.onSelected}/>
+        <div className="center-content">
+          { productList }
+        </div>
+        <ProductModal
+          open={open}
+          closeModal={this.handleCloseModal}
+          product={selectedProduct || undefined}
+          />
       </div>
     );
   }
