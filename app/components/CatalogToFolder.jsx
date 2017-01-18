@@ -128,7 +128,6 @@ var CatalogToFolder = React.createClass({
   handleOpenModal: function(productId) {
     var toggleOpen = ! this.state.open;
     const productIndex = _.findIndex(catalogProducts, { id: productId });
-    console.log("productIndex", productIndex);
     this.setState({
       open: toggleOpen,
       selectedProduct: catalogProducts[productIndex],
