@@ -16,12 +16,16 @@ var ProductModal = React.createClass({
   close: function() {
     this.props.closeModal();
   },
+  addToFolder: function(productId) {
+    this.props.addToFolder(productId);
+    this.props.closeModal();
+  },
   render: function() {
     var { open, product } = this.props;
 
     return (
       <div>
-        <Modal dimmer='blurring' open={open} onClose={this.close}>
+        <Modal dimmer='blurring' open={open} onClose={this.close} className="slim-modal">
           <Modal.Header>{product.title}</Modal.Header>
           <Modal.Content image>
             <Image wrapped size='small' src={product.imageSrc} />
@@ -31,10 +35,17 @@ var ProductModal = React.createClass({
             </Modal.Description>
           </Modal.Content>
           <Modal.Actions>
-            <Button color='black' onClick={this.close}>
+            <Button
+              color='black'
+              onClick={this.close}>
               Close
             </Button>
-            <Button positive icon='checkmark' labelPosition='right' content="Add to Folder" onClick={this.close} />
+            <Button
+              positive
+              icon='checkmark'
+              labelPosition='right'
+              content="Add to Folder"
+              onClick={() => this.addToFolder(product.id)} />
           </Modal.Actions>
         </Modal>
       </div>

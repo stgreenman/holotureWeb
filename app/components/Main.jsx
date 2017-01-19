@@ -1,6 +1,6 @@
 var React = require('react');
 var Nav = require('Nav');
-var CatalogToFolder = require('CatalogToFolder');
+var Catalog = require('Catalog');
 var Footer = require('Footer');
 var { Sidebar, Segment, Button, Menu, Button, Icon } = require('semantic-ui-react');
 
@@ -10,17 +10,19 @@ var Main = React.createClass({
 	toggleSideBarVisibility: function() {
 		// console.log('sideBarVisible', this.state.sideBarVisible);
 		this.setState({
-			sideBarVisible: !this.state.sideBarVisible
+			sideBarVisible: !this.state.sideBarVisible,
+			sideBarButtonActive: !this.state.sideBarButtonActive
 		});
 	},
 	getInitialState: function() {
 		return {
 			itemCount: 0,
-			sideBarVisible: false
+			sideBarVisible: false,
+			sideBarButtonActive: false,
 		}
 	},
-	onAdded: function(items) {
-		itemsAddedToFolder = itemsAddedToFolder.concat(items);
+	onAdded: function(item) {
+		itemsAddedToFolder = itemsAddedToFolder.concat(item);
 		this.setState({
 			itemCount: itemsAddedToFolder.length,
 		});
@@ -35,12 +37,12 @@ var Main = React.createClass({
 		}, this);
 	},
 	render: function() {
-		var {itemCount, sideBarVisible, hideOrShow} = this.state;
+		var {itemCount, sideBarVisible, hideOrShow, sideBarButtonActive} = this.state;
 
 		return (
 			<div>
 				<Nav itemCount={itemCount} />
-				<Button onClick={this.toggleSideBarVisibility}><Icon disabled name='list layout'></Icon></Button>
+				<Button toggle onClick={this.toggleSideBarVisibility} active={sideBarButtonActive}><Icon disabled name='list layout'></Icon></Button>
 				<Sidebar.Pushable as={Segment}>
 					<Sidebar as={Menu} animation='push' width='thin' visible={sideBarVisible} vertical inverted>
 						<Menu.Item name='couches'>
@@ -56,7 +58,7 @@ var Main = React.createClass({
 					<Sidebar.Pusher>
 						<div className="container">
 							<div className="five column centered">
-								<CatalogToFolder onAdded={this.onAdded} onRemoved={this.onRemoved}/>
+								<Catalog onAdded={this.onAdded} onRemoved={this.onRemoved}/>
 							</div>
 						</div>
 					</Sidebar.Pusher>
