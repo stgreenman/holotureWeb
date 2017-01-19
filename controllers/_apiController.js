@@ -13,6 +13,7 @@ var catalogProducts = [
                   description: "This love seat is a perfect choice as an accent chair.",
                   selected: false
                 }
+
               ];
 
 exports.getCatalog = function(req, res, next) {
