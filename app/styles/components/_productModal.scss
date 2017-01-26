@@ -1,3 +1,15 @@
 .slim-modal {
   max-width: 650px;
+  
+}
+
+.image {
+  width: 175px;
+  height: 175px;
+  border-radius: 50%;
+  //border-right: solid;
+  border-width: $border-width;
+  padding: 0 10px 10px 10px;
+  display: block;
+  margin: auto;
 }
