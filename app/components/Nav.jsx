@@ -1,6 +1,9 @@
 var React = require('react');
 
 var Nav = React.createClass({
+	handleOnClick: function() {
+
+	},
 	render: function() {
 		var {itemCount} = this.props;
 		return (
@@ -15,8 +18,8 @@ var Nav = React.createClass({
 
 					<ul className="menu">
 						<li className="menu-text">
-						<span className="item-count">{ itemCount }</span>
-						<img src="https://s3-us-west-2.amazonaws.com/holoture/images/icon-folder.png" alt="folder icon" height="40" width="40" ></img>	Logan's Folder
+							<span className="item-count">{ itemCount }</span>
+							<img src="https://s3-us-west-2.amazonaws.com/holoture/images/icon-folder.png" alt="folder icon" height="40" width="40" ></img>	Logan's Folder
 						</li>
 					</ul>
 				</div>

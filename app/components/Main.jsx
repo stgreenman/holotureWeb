@@ -86,7 +86,7 @@ var Main = React.createClass({
 			<div>
 				<Nav itemCount={itemCount} />
 				<Button toggle onClick={this.toggleSideBarVisibility} active={sideBarButtonActive}><Icon disabled name='list layout'></Icon></Button>
-				<Sidebar.Pushable as={Segment}>
+				<Sidebar.Pushable className="holoture-sidebar">
 					<Sidebar as={Menu} animation='push' width='thin' visible={sideBarVisible} vertical inverted>
 						{ menuItemList }
 					</Sidebar>
