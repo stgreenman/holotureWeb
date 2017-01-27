@@ -76,3 +76,7 @@ var catalogProducts = [
 exports.getCatalog = function(req, res, next) {
   res.status(200).json(catalogProducts)
 }
+
+exports.getFolder = function(req, res, next) {
+  res.status(200).json([{id: 1, name: "Logan"},{id: 2, name: "Scott"}]);
+}
