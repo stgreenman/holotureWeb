@@ -1,4 +1,5 @@
 var React = require('react');
+var {Link} = require('react-router');
 
 var Nav = React.createClass({
 	handleOnClick: function() {
@@ -18,8 +19,10 @@ var Nav = React.createClass({
 
 					<ul className="menu">
 						<li className="menu-text">
-							<span className="item-count">{ itemCount }</span>
-							<img src="https://s3-us-west-2.amazonaws.com/holoture/images/icon-folder.png" alt="folder icon" height="40" width="40" ></img>	Logan's Folder
+							<Link to="/folder">
+								<span className="item-count">{ itemCount }</span>
+								<img src="https://s3-us-west-2.amazonaws.com/holoture/images/icon-folder.png" alt="folder icon" height="40" width="40" ></img>	Logan's Folder
+							</Link>
 						</li>
 					</ul>
 				</div>
