@@ -8,14 +8,16 @@
 
 
 .footer {
-  position: absolute;
+  position: relative;
   bottom: 0;
   width: 100%;
+  //margin-top: -50px;
+  height: 50px;
   background-color: $nav-background;
   text-align: center;
   font-size: 1.2rem;
   font: $navFont;
-  padding: 4rem;
+  padding: 7rem;
   p {
     &.slogan {
       color: #8d9093;

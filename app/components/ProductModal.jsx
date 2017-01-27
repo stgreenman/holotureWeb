@@ -28,7 +28,7 @@ var ProductModal = React.createClass({
         <Modal dimmer='blurring' open={open} onClose={this.close} className="slim-modal">
           <Modal.Header>{product.title}</Modal.Header>
           <Modal.Content image>
-            <Image wrapped size='small' src={product.imageSrc} />
+            <Image wrapped size='large' src={product.imageSrc} className="image" />
             <Modal.Description>
               <Header>{product.title}</Header>
               <p>{product.description}</p>
