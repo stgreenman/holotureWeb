@@ -75,10 +75,15 @@ var Main = React.createClass({
 
 		var catalogOrFolderComponent = null;
 		if (catalogOrFolder === 'catalog') {
-			catalogOrFolderComponent = <Catalog onAdded={this.onAdded} selectedCategoryId={selectedCategoryId}/>;
+			catalogOrFolderComponent = <Catalog
+																		onAdded={this.onAdded}
+																		selectedCategoryId={selectedCategoryId}/>;
 		}
 		else if (catalogOrFolder === 'folder') {
-			catalogOrFolderComponent = <Folder onRemoved={this.onRemoved} folderProducts={itemsAddedToFolder}/>;
+			catalogOrFolderComponent = <Folder
+																		onRemoved={this.onRemoved}
+																		selectedCategoryId={selectedCategoryId}
+																		folderProducts={itemsAddedToFolder}/>;
 		}
 
 		var menuItemList = productCategories.map(function(category) {

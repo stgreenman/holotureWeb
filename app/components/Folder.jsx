@@ -9,9 +9,21 @@ var Folder = React.createClass({
       selectedProduct: null,
     };
   },
+  handleOpenModal: function(productId) {
+    const toggleOpen = ! this.state.open;
+    const {folderProducts} = this.props;
+    const productIndex = _.findIndex(folderProducts, { id: productId });
+    this.setState({
+      open: toggleOpen,
+      selectedProduct: folderProducts[productIndex],
+    });
+  },
+  handleCloseModal: function() {
+    this.setState({ open: false });
+  },
   render: function() {
     const {open, selectedProduct } = this.state;
-    const {folderProducts, selectedCategoryId }  = this.props;
+    const {folderProducts, selectedCategoryId}  = this.props;
 
     var productList = folderProducts.map(function(product) {
       if (product.categoryId === selectedCategoryId || selectedCategoryId === undefined) {
@@ -20,8 +32,7 @@ var Folder = React.createClass({
                   product={product}
                   type="folder"
                   className="product-card"
-                  openModal={this.handleOpenModal}
-                />;
+                  openModal={this.handleOpenModal}/>;
       }
     }, this);
 
@@ -35,7 +46,7 @@ var Folder = React.createClass({
           closeModal={this.handleCloseModal}
           product={selectedProduct || undefined}
           addToFolder={this.handleAddToFolder}
-          />
+          showButtons={false}/>
       </div>
     );
   }

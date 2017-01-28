@@ -21,7 +21,25 @@ var ProductModal = React.createClass({
     this.props.closeModal();
   },
   render: function() {
-    var { open, product } = this.props;
+    var { open, product, showButtons} = this.props;
+
+    var buttons = null;
+    if (showButtons) {
+      buttons = <div>
+                  <Button
+                    color='black'
+                    onClick={this.close}>
+                    Close
+                  </Button>
+                  <Button
+                    positive
+                    icon='checkmark'
+                    labelPosition='right'
+                    content="Add to Folder"
+                    onClick={() => this.addToFolder(product.id)}>
+                  </Button>
+                </div>;
+    }
 
     return (
       <div>
@@ -35,17 +53,7 @@ var ProductModal = React.createClass({
             </Modal.Description>
           </Modal.Content>
           <Modal.Actions>
-            <Button
-              color='black'
-              onClick={this.close}>
-              Close
-            </Button>
-            <Button
-              positive
-              icon='checkmark'
-              labelPosition='right'
-              content="Add to Folder"
-              onClick={() => this.addToFolder(product.id)} />
+            { buttons }
           </Modal.Actions>
         </Modal>
       </div>

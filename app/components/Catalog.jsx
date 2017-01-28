@@ -126,8 +126,8 @@ var Catalog = React.createClass({
                   product={product}
                   type="catalog"
                   className="product-card"
-                  openModal={this.handleOpenModal}
-                />;
+                  openModal={this.handleOpenModal}>
+              </ProductCard>;
       }
     }, this);
 
@@ -141,7 +141,8 @@ var Catalog = React.createClass({
           closeModal={this.handleCloseModal}
           product={selectedProduct || undefined}
           addToFolder={this.handleAddToFolder}
-          />
+          showButtons={true}>
+        </ProductModal>
       </div>
     );
   }
