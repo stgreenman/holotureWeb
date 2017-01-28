@@ -77,7 +77,6 @@ var catalogProducts = [
                   categoryId: 0,
                 },
               ];
-var folderProducts = [];
 
 var Catalog = React.createClass({
   sortByTitle: function(a, b) {
@@ -105,40 +104,6 @@ var Catalog = React.createClass({
       catalogProducts: catalogProducts
     });
   },
-  removeFromFolder: function() {
-    var selected = folderProducts.filter(function(product) {
-                      var isSelected = product.selected;
-                      product.selected = false;
-                      return isSelected;
-                    });
-    catalogProducts = catalogProducts.concat(selected);
-    folderProducts = folderProducts.filter(function(n) {
-      return selected.indexOf(n) == -1;
-    });
-    folderProducts.sort(this.sortByTitle);
-    catalogProducts.sort(this.sortByTitle);
-    this.props.onRemoved(selected);
-    this.setState({
-      folderProducts: folderProducts,
-      catalogProducts: catalogProducts
-    });
-  },
-  onSelected: function(id, type, setSelected) {
-    if (type === "catalog") {
-      catalogProducts.map(function(product) {
-        if (product.id === id) {
-          product.selected = setSelected;
-        }
-      });
-    }
-    else if (type === "folder") {
-      folderProducts.map(function(product) {
-        if (product.id === id) {
-          product.selected = setSelected;
-        }
-      });
-    }
-  },
   handleOpenModal: function(productId) {
     var toggleOpen = ! this.state.open;
     const productIndex = _.findIndex(catalogProducts, { id: productId });
@@ -151,7 +116,7 @@ var Catalog = React.createClass({
     this.setState({ open: false });
   },
   render: function() {
-    const {catalogProducts, folderProducts, open, selectedProduct } = this.state;
+    const {catalogProducts, open, selectedProduct } = this.state;
     const { selectedCategoryId }  = this.props;
 
     var productList = catalogProducts.map(function(product) {

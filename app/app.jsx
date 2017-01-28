@@ -14,8 +14,9 @@ require('style!css!sass!applicationStyles');
 
 ReactDOM.render(
 	<Router history={hashHistory}>
-		<Route path="/" component={Main}>
+		<Route path="/" component={() => (<Main catalogOrFolder="catalog"/>)}>
 		</Route>
+		<Route path="/folder" component={() => (<Main catalogOrFolder="folder"/>)}></Route>
 	</Router>,
 	document.getElementById('app')
 );

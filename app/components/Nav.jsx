@@ -6,7 +6,21 @@ var Nav = React.createClass({
 
 	},
 	render: function() {
-		var {itemCount} = this.props;
+		var {itemCount, catalogOrFolder} = this.props;
+
+		var rightNav = null;
+		if (catalogOrFolder === "catalog") {
+			rightNav = <Link to="/folder">
+									<span className="item-count">{ itemCount }</span>
+									<img src="https://s3-us-west-2.amazonaws.com/holoture/images/icon-folder.png" alt="folder icon" height="40" width="40" ></img>	Logan's Folder
+								</Link>;
+		}
+		else if (catalogOrFolder === "folder") {
+			rightNav = <Link to="/">
+										Back to Catalog
+									</Link>;
+		}
+
 		return (
 			<div className="top-bar">
 				<div className="top-bar-left">
@@ -19,10 +33,7 @@ var Nav = React.createClass({
 
 					<ul className="menu">
 						<li className="menu-text">
-							<Link to="/folder">
-								<span className="item-count">{ itemCount }</span>
-								<img src="https://s3-us-west-2.amazonaws.com/holoture/images/icon-folder.png" alt="folder icon" height="40" width="40" ></img>	Logan's Folder
-							</Link>
+							{ rightNav }
 						</li>
 					</ul>
 				</div>

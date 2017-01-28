@@ -1,6 +1,7 @@
 var React = require('react');
 var Nav = require('Nav');
 var Catalog = require('Catalog');
+var Folder = require('Folder');
 var Footer = require('Footer');
 var { Sidebar, Segment, Button, Menu, Button, Icon } = require('semantic-ui-react');
 
@@ -70,21 +71,29 @@ var Main = React.createClass({
 	},
 	render: function() {
 		var {itemCount, sideBarVisible, hideOrShow, sideBarButtonActive, productCategories, selectedCategoryId} = this.state;
+		var {catalogOrFolder} = this.props;
+
+		var catalogOrFolderComponent = null;
+		if (catalogOrFolder === 'catalog') {
+			catalogOrFolderComponent = <Catalog onAdded={this.onAdded} selectedCategoryId={selectedCategoryId}/>;
+		}
+		else if (catalogOrFolder === 'folder') {
+			catalogOrFolderComponent = <Folder onRemoved={this.onRemoved} folderProducts={itemsAddedToFolder}/>;
+		}
 
 		var menuItemList = productCategories.map(function(category) {
 			return <Menu.Item
 								active={category.active}
 								name={category.name}
 								onClick={() => this.handleOnClick(category.id)}
-								key={category.id}
-							>
+								key={category.id}>
 										{ category.name }
 						 </Menu.Item>
 		}, this);
 
 		return (
 			<div>
-				<Nav itemCount={itemCount} />
+				<Nav itemCount={itemCount} catalogOrFolder={catalogOrFolder}/>
 				<Button toggle onClick={this.toggleSideBarVisibility} active={sideBarButtonActive}><Icon disabled name='list layout'></Icon></Button>
 				<Sidebar.Pushable className="holoture-sidebar">
 					<Sidebar as={Menu} animation='push' width='thin' visible={sideBarVisible} vertical inverted>
@@ -93,7 +102,7 @@ var Main = React.createClass({
 					<Sidebar.Pusher>
 						<div className="container">
 							<div className="five column centered">
-								<Catalog onAdded={this.onAdded} onRemoved={this.onRemoved} selectedCategoryId={selectedCategoryId}/>
+								{catalogOrFolderComponent}
 							</div>
 						</div>
 					</Sidebar.Pusher>

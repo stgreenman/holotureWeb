@@ -1,22 +1,41 @@
 var React = require('react');
 var ProductCard = require('ProductCard');
+var ProductModal = require('ProductModal');
 
 var Folder = React.createClass({
-  onSelected: function(id, type, setSelected) {
-    this.props.onSelected(id, type, setSelected);
+  getInitialState: function() {
+    return {
+      open: false,
+      selectedProduct: null,
+    };
   },
   render: function() {
-    var {products} = this.props;
+    const {open, selectedProduct } = this.state;
+    const {folderProducts, selectedCategoryId }  = this.props;
 
-    var productList = products.map(function(product) {
-      return <ProductCard key={product.id} product={product} onSelected={this.onSelected} type="folder"/>;
+    var productList = folderProducts.map(function(product) {
+      if (product.categoryId === selectedCategoryId || selectedCategoryId === undefined) {
+        return <ProductCard
+                  key={product.id}
+                  product={product}
+                  type="folder"
+                  className="product-card"
+                  openModal={this.handleOpenModal}
+                />;
+      }
     }, this);
 
     return (
-      <div className="folder-card">
-        <div>
-        { productList }
+      <div>
+        <div className="center-content">
+          { productList }
         </div>
+        <ProductModal
+          open={open}
+          closeModal={this.handleCloseModal}
+          product={selectedProduct || undefined}
+          addToFolder={this.handleAddToFolder}
+          />
       </div>
     );
   }
