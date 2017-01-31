@@ -73,10 +73,73 @@ var catalogProducts = [
                 },
               ];
 
+const customerRegistry = {
+  customerList:[
+    {
+      CustomerName:"Jim",
+      CustomerID:0,
+      furnPrefs:[
+        {
+          FurnitureID:1,
+          MaterialIDs:[1,2,2,2,2,2,2,2,2]
+        },
+        {
+          FurnitureID:2,
+          MaterialIDs:[1,2]
+        },
+        {
+          FurnitureID:2,
+          MaterialIDs:[1,2]
+        },
+        {
+          FurnitureID:2,
+          MaterialIDs:[1,2]
+        },
+        {
+          FurnitureID:2,
+          MaterialIDs:[1,2]
+        },
+        {
+          FurnitureID:2,
+          MaterialIDs:[1,2]
+        },
+        {
+          FurnitureID:2,
+          MaterialIDs:[1,2]
+        },
+        {
+          FurnitureID:2,
+          MaterialIDs:[1,2]
+        },
+        {
+          FurnitureID:2,
+          MaterialIDs:[1,2]
+        },
+        {
+          FurnitureID:2,
+          MaterialIDs:[1,2]
+        },
+        {
+          FurnitureID:2,
+          MaterialIDs:[1,2]
+        },
+        {
+          FurnitureID:2,
+          MaterialIDs:[1,2]
+        }
+      ]
+    }
+  ]
+};
+
 exports.getCatalog = function(req, res, next) {
   res.status(200).json(catalogProducts)
 }
 
 exports.getFolder = function(req, res, next) {
   res.status(200).json([{id: 1, name: "Logan"},{id: 2, name: "Scott"}]);
+}
+
+exports.getCustomerRegistry = function(req, res, next) {
+  res.status(200).json(customerRegistry);
 }
