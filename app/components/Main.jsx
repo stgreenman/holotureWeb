@@ -101,7 +101,7 @@ var Main = React.createClass({
 				<Nav itemCount={itemCount} catalogOrFolder={catalogOrFolder}/>
 				<Button toggle onClick={this.toggleSideBarVisibility} active={sideBarButtonActive}><Icon disabled name='list layout'></Icon></Button>
 				<Sidebar.Pushable className="holoture-sidebar">
-					<Sidebar as={Menu} animation='push' width='thin' visible={sideBarVisible} vertical inverted>
+					<Sidebar as={Menu} animation='push' width='thin' visible={sideBarVisible} vertical inverted className="sidebarFilter">
 						{ menuItemList }
 					</Sidebar>
 					<Sidebar.Pusher>

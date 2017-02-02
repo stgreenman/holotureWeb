@@ -27,3 +27,9 @@ div .pushable .holoture-sidebar {
 .pushable {
   overflow: visible !important;
 }
+
+.sidebarFilter{
+  background-color: $nav-background!important;
+  font-family: $navFont;
+  text-decoration: $nav-background;
+}

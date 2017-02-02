@@ -9,6 +9,7 @@ var ProductModal = React.createClass({
         imageSrc: "https://s3-us-west-2.amazonaws.com/holoture/WestElmCouch/westelm.png",
         title: "Filler Modal",
         description: "Filler description",
+        specificDetails:"filler details",
       }
     };
     return defaultProps;
@@ -42,21 +43,26 @@ var ProductModal = React.createClass({
     }
 
     return (
-      <div>
-        <Modal dimmer='blurring' open={open} onClose={this.close} className="slim-modal">
-          <Modal.Header>{product.title}</Modal.Header>
-          <Modal.Content image>
-            <Image wrapped size='large' src={product.imageSrc} className="image" />
-            <Modal.Description>
+        <Modal dimmer='blurring' open={open} onClose={this.close}>
+          <Modal.Header className="modalBorder">{product.title}</Modal.Header>
+
+          <Modal.Content className="content modalContent">
+            <div className="left">
+            <Image src={product.imageSrc} className="Medium floated rounded " />
+            </div>
+            <div className="right">
+            <Modal.Description >
               <Header>{product.title}</Header>
               <p>{product.description}</p>
+              <p className="specificDetails">{product.specificDetails}</p>
             </Modal.Description>
+          </div>
           </Modal.Content>
-          <Modal.Actions>
+
+          <Modal.Actions className="modalBorder">
             { buttons }
           </Modal.Actions>
         </Modal>
-      </div>
     );
   }
 });
