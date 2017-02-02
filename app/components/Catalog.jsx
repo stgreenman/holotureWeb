@@ -141,7 +141,7 @@ var Catalog = React.createClass({
     }, this);
 
     return (
-      <div>
+      <div className="aboveFooter">
         <div className="center-content">
           { productList }
         </div>

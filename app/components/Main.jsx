@@ -97,6 +97,7 @@ var Main = React.createClass({
 		}, this);
 
 		return (
+
 			<div>
 				<Nav itemCount={itemCount} catalogOrFolder={catalogOrFolder}/>
 				<Button toggle onClick={this.toggleSideBarVisibility} active={sideBarButtonActive}><Icon disabled name='list layout'></Icon></Button>

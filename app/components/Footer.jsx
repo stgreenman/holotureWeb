@@ -14,7 +14,7 @@ var Footer = React.createClass({
               <a href="#">Blog</a>
               <a href="#">Pricing</a>
               <a href="#">About</a>
-              <a href="#">Faq</a>
+              <a href="#">FAQ</a>
               <a href="#">Contact</a>
             </p>
             <p className="copyright">Copyright © 2016</p>
