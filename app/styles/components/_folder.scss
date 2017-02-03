@@ -1,7 +1,7 @@
 .folder-container {
   display: flex;
   flex-direction: column;
-  min-height: 100%;
+  min-height: 100vh;
   min-width: 40%;
   border-style: solid;
   border-width: $border-width;
