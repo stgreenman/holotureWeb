@@ -128,17 +128,26 @@ var Catalog = React.createClass({
     const {catalogProducts, open, selectedProduct } = this.state;
     const { selectedCategoryId }  = this.props;
 
-    var productList = catalogProducts.map(function(product) {
-      if (product.categoryId === selectedCategoryId || selectedCategoryId === undefined) {
-        return <ProductCard
-                  key={product.id}
-                  product={product}
-                  type="catalog"
-                  className="product-card"
-                  openModal={this.handleOpenModal}>
-              </ProductCard>;
-      }
+    var productList = catalogProducts.filter(function(product){
+      return product.categoryId === selectedCategoryId
+                || selectedCategoryId === undefined;
+    }).map(function(product) {
+      return <ProductCard
+                key={product.id}
+                product={product}
+                type="catalog"
+                className="product-card"
+                openModal={this.handleOpenModal}>
+            </ProductCard>;
     }, this);
+
+    if (productList.length < 1) {
+      console.log('here');
+      productList = <div>There isn't any furniture in this category.</div>
+    }
+    else {
+      console.log(productList);
+    }
 
     return (
       <div className="aboveFooter">
