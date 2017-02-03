@@ -142,11 +142,7 @@ var Catalog = React.createClass({
     }, this);
 
     if (productList.length < 1) {
-      console.log('here');
       productList = <div>There isn't any furniture in this category.</div>
-    }
-    else {
-      console.log(productList);
     }
 
     return (
@@ -159,7 +155,7 @@ var Catalog = React.createClass({
           closeModal={this.handleCloseModal}
           product={selectedProduct || undefined}
           addToFolder={this.handleAddToFolder}
-          showButtons={true}>
+          buttonAction={"add"}>
         </ProductModal>
       </div>
     );

@@ -21,25 +21,33 @@ var ProductModal = React.createClass({
     this.props.addToFolder(productId);
     this.props.closeModal();
   },
+  removeFromFolder: function(productId) {
+    this.props.removeFromFolder(productId);
+    this.props.closeModal();
+  },
   render: function() {
-    var { open, product, showButtons} = this.props;
+    var { open, product, buttonAction} = this.props;
 
-    var buttons = null;
-    if (showButtons) {
-      buttons = <div>
-                  <Button
-                    color='black'
-                    onClick={this.close}>
-                    Close
-                  </Button>
-                  <Button
-                    positive
-                    icon='checkmark'
-                    labelPosition='right'
-                    content="Add to Folder"
-                    onClick={() => this.addToFolder(product.id)}>
-                  </Button>
-                </div>;
+    var actionableButton = null;
+    if (buttonAction === "add") {
+      actionableButton =
+        <Button
+          positive
+          icon='checkmark'
+          labelPosition='right'
+          content="Add to Folder"
+          onClick={() => this.addToFolder(product.id)}>
+        </Button>;
+    }
+    else if (buttonAction === "remove") {
+      actionableButton =
+        <Button
+          negative
+          icon='trash'
+          labelPosition='right'
+          content="Remove from Folder"
+          onClick={() => this.removeFromFolder(product.id)}>
+        </Button>;
     }
 
     return (
@@ -60,7 +68,12 @@ var ProductModal = React.createClass({
           </Modal.Content>
 
           <Modal.Actions className="modalBorder">
-            { buttons }
+            <Button
+              color='black'
+              onClick={this.close}>
+              Close
+            </Button>
+            { actionableButton }
           </Modal.Actions>
         </Modal>
     );

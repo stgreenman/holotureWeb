@@ -2,6 +2,8 @@ var React = require('react');
 var ProductCard = require('ProductCard');
 var ProductModal = require('ProductModal');
 
+var folderProducts = [];
+
 var Folder = React.createClass({
   getInitialState: function() {
     return {
@@ -9,32 +11,48 @@ var Folder = React.createClass({
       selectedProduct: null,
     };
   },
+  handleRemoveFromFolder: function(productId) {
+    const productIndex = _.findIndex(this.folderProducts, { id: productId });
+    this.props.onRemoved(this.folderProducts[productIndex]);
+    this.setState({
+      open: false
+    });
+  },
   handleOpenModal: function(productId) {
-    const toggleOpen = ! this.state.open;
-    const {folderProducts} = this.props;
-    const productIndex = _.findIndex(folderProducts, { id: productId });
+    var toggleOpen = ! this.state.open;
+    const productIndex = _.findIndex(this.folderProducts, { id: productId });
     this.setState({
       open: toggleOpen,
-      selectedProduct: folderProducts[productIndex],
+      selectedProduct: this.folderProducts[productIndex],
     });
   },
   handleCloseModal: function() {
     this.setState({ open: false });
   },
+  componentWillMount: function() {
+    this.folderProducts = this.props.folderProducts;
+    console.log('will mount', this.folderProducts);
+  },
   render: function() {
     const {open, selectedProduct } = this.state;
-    const {folderProducts, selectedCategoryId}  = this.props;
+    const { selectedCategoryId}  = this.props;
+    console.log('render', this.folderProducts);
 
-    var productList = folderProducts.map(function(product) {
-      if (product.categoryId === selectedCategoryId || selectedCategoryId === undefined) {
-        return <ProductCard
-                  key={product.id}
-                  product={product}
-                  type="folder"
-                  className="product-card"
-                  openModal={this.handleOpenModal}/>;
-      }
+    var productList = this.folderProducts.filter(function(product) {
+      return product.categoryId === selectedCategoryId
+                || selectedCategoryId === undefined;
+    }).map(function(product) {
+      return <ProductCard
+                key={product.id}
+                product={product}
+                type="folder"
+                className="product-card"
+                openModal={this.handleOpenModal}/>;
     }, this);
+
+    if (productList.length < 1) {
+      productList = <div>There isn't any furniture in this category.</div>
+    }
 
     return (
       <div>
@@ -45,8 +63,8 @@ var Folder = React.createClass({
           open={open}
           closeModal={this.handleCloseModal}
           product={selectedProduct || undefined}
-          addToFolder={this.handleAddToFolder}
-          showButtons={false}/>
+          removeFromFolder={this.handleRemoveFromFolder}
+          buttonAction={"remove"}/>
       </div>
     );
   }

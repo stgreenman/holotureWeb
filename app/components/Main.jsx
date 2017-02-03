@@ -32,7 +32,7 @@ var Main = React.createClass({
 	},
 	getInitialState: function() {
 		return {
-			itemCount: 0,
+			itemCount: itemsAddedToFolder.length,
 			sideBarVisible: false,
 			sideBarButtonActive: false,
 			productCategories: [
@@ -54,14 +54,14 @@ var Main = React.createClass({
 			],
 		}
 	},
-	onAdded: function(item) {
+	handleOnAdded: function(item) {
 		itemsAddedToFolder = itemsAddedToFolder.concat(item);
 		this.setState({
 			itemCount: itemsAddedToFolder.length,
 		});
 	},
-	onRemoved: function(items) {
-		items.map(function(item) {
+	handleOnRemoved: function(items) {
+		itemsAddedToFolder.map(function(item) {
 			var index = itemsAddedToFolder.indexOf(item);
 			itemsAddedToFolder.splice(index, 1);
 			this.setState({
@@ -76,12 +76,12 @@ var Main = React.createClass({
 		var catalogOrFolderComponent = null;
 		if (catalogOrFolder === 'catalog') {
 			catalogOrFolderComponent = <Catalog
-																		onAdded={this.onAdded}
+																		onAdded={this.handleOnAdded}
 																		selectedCategoryId={selectedCategoryId}/>;
 		}
 		else if (catalogOrFolder === 'folder') {
 			catalogOrFolderComponent = <Folder
-																		onRemoved={this.onRemoved}
+																		onRemoved={this.handleOnRemoved}
 																		selectedCategoryId={selectedCategoryId}
 																		folderProducts={itemsAddedToFolder}/>;
 		}
