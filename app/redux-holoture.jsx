@@ -10,8 +10,17 @@ var reducer = (state = stateDefault, action) => {
     case 'ADD_TO_FOLDER':
       return {
         ...state,
-        folderProducts: state.products.concat(action.product),
-        folderNumber: state.products.length + 1,
+        folderProducts: [
+          ...state.folderProducts,
+          action.product
+        ],
+        folderNumber: state.folderProducts.length + 1,
+      };
+    case 'REMOVE_FROM_FOLDER':
+      return {
+        ...state,
+        folderProducts: state.folderProducts.filter((product) => product.id !== action.id),
+        folderNumber: state.folderProducts.length - 1,
       };
     default:
      return state;
@@ -20,14 +29,27 @@ var reducer = (state = stateDefault, action) => {
 
 var store = redux.createStore(reducer);
 
+// Subscribe to changes
+var unsubscribe = store.subscribe(() => {
+  const state = store.getState();
+  console.log('state is', state);
+});
+
 console.log("before", store.getState());
 store.dispatch({
   type: 'ADD_TO_FOLDER',
   product: {id:1}
 });
-console.log("after", store.getState());
+
+// How to unsubscribe
+//unsubscribe();
+
 store.dispatch({
   type: 'ADD_TO_FOLDER',
   product: {id:2}
 });
-console.log("after after", store.getState());
+
+store.dispatch({
+  type: 'REMOVE_FROM_FOLDER',
+  id: 1
+});
