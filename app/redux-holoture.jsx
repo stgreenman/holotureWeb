@@ -1,31 +1,74 @@
 var redux = require('redux');
 
 var stateDefault = {
-  folderNumber: 0,
-  folderProducts: []
+  folderName: "",
+  folderProducts: [],
+  catalogProducts: [],
 };
 
-var reducer = (state = stateDefault, action) => {
+
+// Folder name reducer and action generators
+// -----------------------
+var folderNameReducer = (state = "Logan", action) => {
+  switch (action.type) {
+    case 'CHANGE_FOLDER_NAME':
+      return action.name;
+    default:
+      return state;
+  }
+};
+
+var changeFolderName = (name) => {
+  return {
+    type: 'CHANGE_FOLDER_NAME',
+    name
+  }
+};
+
+// Folder reducer and action generators
+// ----------------------
+var folderProductsReducer = (state = [], action) => {
   switch (action.type) {
     case 'ADD_TO_FOLDER':
-      return {
+      return [
         ...state,
-        folderProducts: [
-          ...state.folderProducts,
-          action.product
-        ],
-        folderNumber: state.folderProducts.length + 1,
-      };
+        action.product
+      ];
     case 'REMOVE_FROM_FOLDER':
-      return {
-        ...state,
-        folderProducts: state.folderProducts.filter((product) => product.id !== action.id),
-        folderNumber: state.folderProducts.length - 1,
-      };
+      return state.filter((product) => product.id !== action.id);
     default:
      return state;
   }
 };
+
+var addToFolder = (product) => {
+  return {
+    type: 'ADD_TO_FOLDER',
+    product
+  }
+};
+
+var removeFromFolder = (id) => {
+  return {
+    type: 'REMOVE_FROM_FOLDER',
+    id
+  }
+};
+
+// Catalog reducer and action generators
+// -----------------------
+var catalogProductsReducer = (state = [], action) => {
+  switch (action.type) {
+    default:
+      return state;
+  }
+};
+
+var reducer = redux.combineReducers({
+  folderName: folderNameReducer,
+  folderProducts: folderProductsReducer,
+  catalogProducts: catalogProductsReducer,
+});
 
 var store = redux.createStore(reducer);
 
@@ -36,20 +79,10 @@ var unsubscribe = store.subscribe(() => {
 });
 
 console.log("before", store.getState());
-store.dispatch({
-  type: 'ADD_TO_FOLDER',
-  product: {id:1}
-});
+store.dispatch(addToFolder({id:1}));
 
 // How to unsubscribe
 //unsubscribe();
 
-store.dispatch({
-  type: 'ADD_TO_FOLDER',
-  product: {id:2}
-});
-
-store.dispatch({
-  type: 'REMOVE_FROM_FOLDER',
-  id: 1
-});
+store.dispatch(addToFolder({id:2}));
+store.dispatch(removeFromFolder(1));
