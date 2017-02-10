@@ -1,4 +1,5 @@
 var redux = require('redux');
+var axios = require('axios');
 
 var stateDefault = {
   folderName: "",
@@ -57,11 +58,43 @@ var removeFromFolder = (id) => {
 
 // Catalog reducer and action generators
 // -----------------------
-var catalogProductsReducer = (state = [], action) => {
+var catalogProductsReducer = (state = {isFetching: false, catalogProducts: []}, action) => {
   switch (action.type) {
+    case 'START_PRODUCTS_FETCH':
+      return {
+        isFetching: true,
+        catalogProducts: [],
+      };
+    case 'COMPLETE_PRODUCTS_FETCH':
+      return {
+        isFetching: false,
+        catalogProducts: action.products,
+      };
     default:
       return state;
   }
+};
+
+var startProductsFetch = () => {
+  return {
+    type: 'START_PRODUCTS_FETCH',
+  };
+};
+
+var completeProductsFetch = (products) => {
+  return {
+    type: 'COMPLETE_PRODUCTS_FETCH',
+    products
+  };
+};
+
+var fetchProducts = () => {
+  store.dispatch(startProductsFetch());
+
+  axios.get('/api/getCatalog').then(function (res) {
+    var products = res.data;
+    store.dispatch(completeProductsFetch(products));
+  });
 };
 
 var reducer = redux.combineReducers({
@@ -76,7 +109,16 @@ var store = redux.createStore(reducer);
 var unsubscribe = store.subscribe(() => {
   const state = store.getState();
   console.log('state is', state);
+
+  if (state.catalogProducts.isFetching) {
+    console.log('Loading...');
+  }
+  else {
+    console.log('products', state.catalogProducts.catalogProducts);
+  }
 });
+
+fetchProducts();
 
 console.log("before", store.getState());
 store.dispatch(addToFolder({id:1}));
