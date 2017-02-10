@@ -3,6 +3,7 @@ var Nav = require('Nav');
 var Catalog = require('Catalog');
 var Folder = require('Folder');
 var Footer = require('Footer');
+var Login = require('Login');
 var { Sidebar, Segment, Button, Menu, Button, Icon } = require('semantic-ui-react');
 
 var itemsAddedToFolder = [];
@@ -100,6 +101,7 @@ var Main = React.createClass({
 
 			<div>
 				<Nav itemCount={itemCount} catalogOrFolder={catalogOrFolder}/>
+				<Login/>
 				<Button toggle onClick={this.toggleSideBarVisibility} active={sideBarButtonActive}><Icon disabled name='list layout'></Icon></Button>
 				<Sidebar.Pushable className="holoture-sidebar">
 					<Sidebar as={Menu} animation='push' width='thin' visible={sideBarVisible} vertical inverted className="sidebarFilter">

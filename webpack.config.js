@@ -30,6 +30,7 @@ module.exports = {
       ProductCard: "app/components/ProductCard",
       ProductModal: "app/components/ProductModal",
 			applicationStyles: 'app/styles/app.scss',
+      Login: "app/components/Login.jsx",
 		},
     extensions: ['', '.js', '.jsx']
   },
