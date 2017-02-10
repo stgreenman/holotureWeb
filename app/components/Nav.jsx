@@ -8,6 +8,10 @@ var Nav = React.createClass({
 	render: function() {
 		var {itemCount, catalogOrFolder} = this.props;
 
+		var leftNav = <link to="/">
+										Login
+									</link>
+
 		var rightNav = null;
 		if (catalogOrFolder === "catalog") {
 			rightNav = <Link to="/folder">
@@ -25,6 +29,9 @@ var Nav = React.createClass({
 			<div className="top-bar">
 				<div className="top-bar-left">
 					<ul className="menu">
+						<li className="menu-text">
+							{ leftNav }
+						</li>
 					<li><img src="https://s3-us-west-2.amazonaws.com/holoture/images/shortNLogo.png" alt="holoture name logo" hight="70" width="160" className="inverted"></img></li>
 
 					</ul>
