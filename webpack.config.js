@@ -29,8 +29,8 @@ module.exports = {
       Folder: "app/components/Folder",
       ProductCard: "app/components/ProductCard",
       ProductModal: "app/components/ProductModal",
-			applicationStyles: 'app/styles/app.scss',
       Login: "app/components/Login.jsx",
+			applicationStyles: 'app/styles/app.scss',
 		},
     extensions: ['', '.js', '.jsx']
   },
