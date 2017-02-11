@@ -1,4 +1,6 @@
 var React = require('react');
+var {connect} = require('react-redux');
+var actions = require('actions');
 var { Button, Image, Modal, Header } = require('semantic-ui-react');
 
 var ProductModal = React.createClass({
@@ -14,19 +16,12 @@ var ProductModal = React.createClass({
     };
     return defaultProps;
   },
-  close: function() {
-    this.props.closeModal();
-  },
-  addToFolder: function(productId) {
-    this.props.addToFolder(productId);
-    this.props.closeModal();
-  },
   removeFromFolder: function(productId) {
     this.props.removeFromFolder(productId);
     this.props.closeModal();
   },
   render: function() {
-    var { open, product, buttonAction} = this.props;
+    var { open, product, buttonAction, dispatch} = this.props;
 
     var actionableButton = null;
     if (buttonAction === "add") {
@@ -36,7 +31,10 @@ var ProductModal = React.createClass({
           icon='checkmark'
           labelPosition='right'
           content="Add to Folder"
-          onClick={() => this.addToFolder(product.id)}>
+          onClick={() => {
+            dispatch(actions.addToFolder(product));
+            this.props.closeModal();
+          }}>
         </Button>;
     }
     else if (buttonAction === "remove") {
@@ -70,7 +68,9 @@ var ProductModal = React.createClass({
           <Modal.Actions className="modalBorder">
             <Button
               color='black'
-              onClick={this.close}>
+              onClick={() => {
+                this.props.closeModal();
+              }}>
               Close
             </Button>
             { actionableButton }
@@ -80,4 +80,4 @@ var ProductModal = React.createClass({
   }
 });
 
-module.exports = ProductModal;
+module.exports = connect()(ProductModal);

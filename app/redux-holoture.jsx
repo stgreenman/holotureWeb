@@ -11,17 +11,7 @@ var store = require('./store/configureStore').configure();
 
 
 // Subscribe to changes
-var unsubscribe = store.subscribe(() => {
-  const state = store.getState();
-  console.log('state is', state);
 
-  if (state.catalogProducts.isFetching) {
-    console.log('Loading...');
-  }
-  else {
-    console.log('products', state.catalogProducts.catalogProducts);
-  }
-});
 
 store.dispatch(actions.fetchProducts());
 

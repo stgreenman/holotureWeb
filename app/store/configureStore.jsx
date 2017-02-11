@@ -6,7 +6,7 @@ export var configure = () => {
   var reducer = redux.combineReducers({
     folderName: folderNameReducer,
     folderProducts: folderProductsReducer,
-    catalogProducts: catalogProductsReducer,
+    catalog: catalogProductsReducer,
   });
 
   var store = redux.createStore(reducer, redux.compose(

@@ -1,9 +1,20 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var {Provider} = require('react-redux');
 var {Route, Router, IndexRoute, hashHistory} = require('react-router');
 
 var Main = require('Main');
 var Login = require('Login');
+
+var store = require('configureStore').configure();
+var actions = require('actions');
+
+store.dispatch(actions.fetchProducts());
+
+var unsubscribe = store.subscribe(() => {
+  const state = store.getState();
+  console.log('state is', state);
+});
 
 // Load foundation
 require('style!css!foundation-sites/dist/css/foundation.min.css');
@@ -14,12 +25,12 @@ $(document).foundation();
 require('style!css!sass!applicationStyles');
 
 ReactDOM.render(
-	<Router history={hashHistory}>
-		<Route path="/" component={() => (<Main catalogOrFolder="catalog"/>)}></Route>
-		<Route path="/folder" component={() => (<Main catalogOrFolder="folder"/>)}></Route>
-		<Route path="/login" component={Login}></Route>
-	</Router>,
+	<Provider store={store}>
+		<Router history={hashHistory}>
+			<Route path="/" component={() => (<Main catalogOrFolder="catalog"/>)}></Route>
+			<Route path="/folder" component={() => (<Main catalogOrFolder="folder"/>)}></Route>
+			<Route path="/login" component={Login}></Route>
+		</Router>
+	</Provider>,
 	document.getElementById('app')
 );
-
-require('./redux-holoture.jsx');

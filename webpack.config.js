@@ -31,6 +31,8 @@ module.exports = {
       ProductModal: "app/components/ProductModal",
       Login: "app/components/Login.jsx",
 			applicationStyles: 'app/styles/app.scss',
+      configureStore: 'app/store/configureStore.jsx',
+      actions: 'app/actions/index.jsx',
 		},
     extensions: ['', '.js', '.jsx']
   },
