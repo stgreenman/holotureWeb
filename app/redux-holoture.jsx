@@ -1,5 +1,4 @@
 var redux = require('redux');
-var axios = require('axios');
 
 var stateDefault = {
   folderName: "",
@@ -7,103 +6,9 @@ var stateDefault = {
   catalogProducts: [],
 };
 
+var actions = require('./actions/index');
+var store = require('./store/configureStore').configure();
 
-// Folder name reducer and action generators
-// -----------------------
-var folderNameReducer = (state = "Logan", action) => {
-  switch (action.type) {
-    case 'CHANGE_FOLDER_NAME':
-      return action.name;
-    default:
-      return state;
-  }
-};
-
-var changeFolderName = (name) => {
-  return {
-    type: 'CHANGE_FOLDER_NAME',
-    name
-  }
-};
-
-// Folder reducer and action generators
-// ----------------------
-var folderProductsReducer = (state = [], action) => {
-  switch (action.type) {
-    case 'ADD_TO_FOLDER':
-      return [
-        ...state,
-        action.product
-      ];
-    case 'REMOVE_FROM_FOLDER':
-      return state.filter((product) => product.id !== action.id);
-    default:
-     return state;
-  }
-};
-
-var addToFolder = (product) => {
-  return {
-    type: 'ADD_TO_FOLDER',
-    product
-  }
-};
-
-var removeFromFolder = (id) => {
-  return {
-    type: 'REMOVE_FROM_FOLDER',
-    id
-  }
-};
-
-// Catalog reducer and action generators
-// -----------------------
-var catalogProductsReducer = (state = {isFetching: false, catalogProducts: []}, action) => {
-  switch (action.type) {
-    case 'START_PRODUCTS_FETCH':
-      return {
-        isFetching: true,
-        catalogProducts: [],
-      };
-    case 'COMPLETE_PRODUCTS_FETCH':
-      return {
-        isFetching: false,
-        catalogProducts: action.products,
-      };
-    default:
-      return state;
-  }
-};
-
-var startProductsFetch = () => {
-  return {
-    type: 'START_PRODUCTS_FETCH',
-  };
-};
-
-var completeProductsFetch = (products) => {
-  return {
-    type: 'COMPLETE_PRODUCTS_FETCH',
-    products
-  };
-};
-
-var fetchProducts = () => {
-  store.dispatch(startProductsFetch());
-
-  axios.get('/api/getCatalog').then(function (res) {
-    var products = res.data;
-    store.dispatch(completeProductsFetch(products));
-  });
-};
-
-var reducer = redux.combineReducers({
-  folderName: folderNameReducer,
-  folderProducts: folderProductsReducer,
-  catalogProducts: catalogProductsReducer,
-});
-
-var store = redux.createStore(reducer);
 
 // Subscribe to changes
 var unsubscribe = store.subscribe(() => {
@@ -118,13 +23,13 @@ var unsubscribe = store.subscribe(() => {
   }
 });
 
-fetchProducts();
+store.dispatch(actions.fetchProducts());
 
 console.log("before", store.getState());
-store.dispatch(addToFolder({id:1}));
+store.dispatch(actions.addToFolder({id:1}));
 
 // How to unsubscribe
 //unsubscribe();
 
-store.dispatch(addToFolder({id:2}));
-store.dispatch(removeFromFolder(1));
+store.dispatch(actions.addToFolder({id:2}));
+store.dispatch(actions.removeFromFolder(1));
