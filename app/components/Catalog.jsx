@@ -36,7 +36,6 @@ var Catalog = React.createClass({
     const { selectedCategoryId, catalog }  = this.props;
 
     if (!catalog.isFetching) {
-      console.log('in here', catalog);
       var catalogProducts = catalog.catalogProducts;
       var productList = catalogProducts.filter(function(product){
         return product.categoryId === selectedCategoryId

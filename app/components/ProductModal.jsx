@@ -33,6 +33,7 @@ var ProductModal = React.createClass({
           content="Add to Folder"
           onClick={() => {
             dispatch(actions.addToFolder(product));
+            dispatch(actions.removeFromCatalog(product.id));
             this.props.closeModal();
           }}>
         </Button>;
@@ -44,7 +45,11 @@ var ProductModal = React.createClass({
           icon='trash'
           labelPosition='right'
           content="Remove from Folder"
-          onClick={() => this.removeFromFolder(product.id)}>
+          onClick={() => {
+            dispatch(actions.removeFromFolder(product.id));
+            dispatch(actions.addToCatalog(product));
+            this.props.closeModal();
+          }}>
         </Button>;
     }
 

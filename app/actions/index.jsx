@@ -7,6 +7,20 @@ export var changeFolderName = (name) => {
   }
 };
 
+export var addToCatalog = (product) => {
+  return {
+    type: 'ADD_TO_CATALOG',
+    product
+  };
+};
+
+export var removeFromCatalog = (id) => {
+  return {
+    type: 'REMOVE_FROM_CATALOG',
+    id
+  }
+};
+
 export var addToFolder = (product) => {
   return {
     type: 'ADD_TO_FOLDER',

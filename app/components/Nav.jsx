@@ -1,4 +1,5 @@
 var React = require('react');
+var {connect} = require('react-redux');
 var {Link} = require('react-router');
 
 var Nav = React.createClass({
@@ -6,7 +7,9 @@ var Nav = React.createClass({
 
 	},
 	render: function() {
-		var {itemCount, catalogOrFolder} = this.props;
+		var {catalogOrFolder, folderProducts} = this.props;
+
+		const itemCount = folderProducts.length;
 
 		var rightNav = null;
 		if (catalogOrFolder === "catalog") {
@@ -43,4 +46,10 @@ var Nav = React.createClass({
 });
 
 
-module.exports = Nav;
+module.exports = connect(
+	(state) => {
+		return {
+			folderProducts: state.folderProducts,
+		};
+	}
+)(Nav);

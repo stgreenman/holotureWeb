@@ -1,8 +1,7 @@
 var React = require('react');
+var {connect} = require('react-redux');
 var ProductCard = require('ProductCard');
 var ProductModal = require('ProductModal');
-
-var folderProducts = [];
 
 var Folder = React.createClass({
   getInitialState: function() {
@@ -11,34 +10,22 @@ var Folder = React.createClass({
       selectedProduct: null,
     };
   },
-  handleRemoveFromFolder: function(productId) {
-    const productIndex = _.findIndex(this.folderProducts, { id: productId });
-    this.props.onRemoved(this.folderProducts[productIndex]);
-    this.setState({
-      open: false
-    });
-  },
   handleOpenModal: function(productId) {
     var toggleOpen = ! this.state.open;
-    const productIndex = _.findIndex(this.folderProducts, { id: productId });
+    const productIndex = _.findIndex(this.props.folderProducts, { id: productId });
     this.setState({
       open: toggleOpen,
-      selectedProduct: this.folderProducts[productIndex],
+      selectedProduct: this.props.folderProducts[productIndex],
     });
   },
   handleCloseModal: function() {
     this.setState({ open: false });
   },
-  componentWillMount: function() {
-    this.folderProducts = this.props.folderProducts;
-    console.log('will mount', this.folderProducts);
-  },
   render: function() {
     const {open, selectedProduct } = this.state;
-    const { selectedCategoryId}  = this.props;
-    console.log('render', this.folderProducts);
+    const { selectedCategoryId, folderProducts }  = this.props;
 
-    var productList = this.folderProducts.filter(function(product) {
+    var productList = folderProducts.filter(function(product) {
       return product.categoryId === selectedCategoryId
                 || selectedCategoryId === undefined;
     }).map(function(product) {
@@ -63,11 +50,16 @@ var Folder = React.createClass({
           open={open}
           closeModal={this.handleCloseModal}
           product={selectedProduct || undefined}
-          removeFromFolder={this.handleRemoveFromFolder}
           buttonAction={"remove"}/>
       </div>
     );
   }
 });
 
-module.exports = Folder;
+module.exports = connect(
+  (state) => {
+    return {
+      folderProducts: state.folderProducts,
+    };
+  }
+)(Folder);

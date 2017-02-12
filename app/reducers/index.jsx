@@ -33,6 +33,19 @@ export var catalogProductsReducer = (state = {isFetching: false, catalogProducts
         isFetching: false,
         catalogProducts: action.products,
       };
+    case 'ADD_TO_CATALOG':
+      return {
+        ...state,
+        catalogProducts: [
+          ...state.catalogProducts,
+          action.product
+        ]
+      }
+    case 'REMOVE_FROM_CATALOG':
+      return  {
+        ...state,
+        catalogProducts: state.catalogProducts.filter((product) => product.id !== action.id),
+      }
     default:
       return state;
   }
