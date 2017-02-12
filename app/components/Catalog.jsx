@@ -36,7 +36,7 @@ var Catalog = React.createClass({
     const { selectedCategoryId, catalog }  = this.props;
 
     if (!catalog.isFetching) {
-      var catalogProducts = catalog.catalogProducts;
+      var catalogProducts = catalog.catalogProducts.sort(this.sortByTitle);
       var productList = catalogProducts.filter(function(product){
         return product.categoryId === selectedCategoryId
                   || selectedCategoryId === undefined;
