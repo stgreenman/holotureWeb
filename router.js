@@ -7,6 +7,6 @@ module.exports = function(app) {
   // routes go here
   app.use('/api', apiRoutes);
   apiRoutes.get('/getCatalog', _apiController.getCatalog);
-  apiRoutes.get('/getFolder', _apiController.getFolder);
+  apiRoutes.get('/getFolders', _apiController.getFolders);
   apiRoutes.get('/customerRegistry', _apiController.getCustomerRegistry)
 }

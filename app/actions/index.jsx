@@ -1,11 +1,6 @@
 var axios = require('axios');
 
-export var changeFolderName = (name) => {
-  return {
-    type: 'CHANGE_FOLDER_NAME',
-    name
-  }
-};
+// Catalog Reducer actions
 
 export var addToCatalog = (product) => {
   return {
@@ -20,21 +15,6 @@ export var removeFromCatalog = (id) => {
     id
   }
 };
-
-export var addToFolder = (product) => {
-  return {
-    type: 'ADD_TO_FOLDER',
-    product
-  }
-};
-
-export var removeFromFolder = (id) => {
-  return {
-    type: 'REMOVE_FROM_FOLDER',
-    id
-  }
-};
-
 
 export var startProductsFetch = () => {
   return {
@@ -58,4 +38,65 @@ export var fetchProducts = () => {
       dispatch(completeProductsFetch(products));
     });
   };
+};
+
+// Folder Reducer actions
+
+export var createNewFolder = (folder) => {
+  return {
+    type: 'CREATE_NEW_FOLDER',
+    folder
+  };
+};
+
+export var setSelectedFolder = (id) => {
+  return {
+    type: 'SET_SELECTED_FOLDER',
+    id
+  };
+};
+
+export var removeFolder = (id) => {
+  return {
+    type: 'REMOVE_FOLDER',
+    id
+  };
+};
+
+export var startFoldersFetch = () => {
+  return {
+    type: 'START_FOLDERS_FETCH',
+  }
+};
+
+export var completeFoldersFetch = (folders) => {
+  return {
+    type: 'COMPLETE_FOLDERS_FETCH',
+    folders
+  };
+};
+
+export var fetchFolders = () => {
+  return (dispatch, getState) => {
+    dispatch(startFoldersFetch());
+
+    axios.get('/api/getFolders').then(function (res) {
+      var folders = res.data;
+      dispatch(completeFoldersFetch(folders));
+    });
+  };
+};
+
+export var addToFolder = (product) => {
+  return {
+    type: 'ADD_TO_FOLDER',
+    product
+  }
+};
+
+export var removeFromFolder = (id) => {
+  return {
+    type: 'REMOVE_FROM_FOLDER',
+    id
+  }
 };

@@ -21,7 +21,7 @@ var Catalog = React.createClass({
   },
   handleOpenModal: function(productId) {
     var toggleOpen = ! this.state.open;
-    var catalogProducts = this.props.catalog.catalogProducts;
+    var catalogProducts = this.props.catalog.products;
     const productIndex = _.findIndex(catalogProducts, { id: productId });
     this.setState({
       open: toggleOpen,
@@ -36,7 +36,7 @@ var Catalog = React.createClass({
     const { selectedCategoryId, catalog }  = this.props;
 
     if (!catalog.isFetching) {
-      var catalogProducts = catalog.catalogProducts.sort(this.sortByTitle);
+      var catalogProducts = catalog.products.sort(this.sortByTitle);
       var productList = catalogProducts.filter(function(product){
         return product.categoryId === selectedCategoryId
                   || selectedCategoryId === undefined;

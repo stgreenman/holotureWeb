@@ -1,50 +1,83 @@
-export var folderNameReducer = (state = "Logan", action) => {
-  switch (action.type) {
-    case 'CHANGE_FOLDER_NAME':
-      return action.name;
-    default:
-      return state;
-  }
+const defaultState = {
+  selectedFolderId: 1,
+  isFetching: true,
+  folders: [],
+  products: []
 };
 
-export var folderProductsReducer = (state = [], action) => {
+export var folderReducer = (state = defaultState, action) => {
   switch (action.type) {
-    case 'ADD_TO_FOLDER':
-      return [
+    case 'START_FOLDER_FETCH':
+      return {
         ...state,
-        action.product
-      ];
+        isFetching: true
+      };
+    case 'COMPLETE_FOLDERS_FETCH':
+      return {
+        ...state,
+        isFetching: false,
+        folders: action.folders
+      };
+    case 'CREATE_NEW_FOLDER':
+      return {
+        ...state,
+        folders: [
+          ...state.folders,
+          action.folder
+        ]
+      };
+    case 'SET_SELECTED_FOLDER':
+      return {
+        ...state,
+        selectedFolderId: action.id
+      }
+    case 'REMOVE_FOLDER':
+      return {
+        ...state,
+        folders: state.folders.filter((folder) => folder.id !== action.id),
+      };
+    case 'ADD_TO_FOLDER':
+      return {
+        ...state,
+        products: [
+          ...state.products,
+          action.product
+        ]
+      };
     case 'REMOVE_FROM_FOLDER':
-      return state.filter((product) => product.id !== action.id);
+      return {
+        ...state,
+        products: state.products.filter((product) => product.id !== action.id)
+      }
     default:
      return state;
   }
 };
 
-export var catalogProductsReducer = (state = {isFetching: false, catalogProducts: []}, action) => {
+export var catalogReducer = (state = {isFetching: false, products: []}, action) => {
   switch (action.type) {
     case 'START_PRODUCTS_FETCH':
       return {
         isFetching: true,
-        catalogProducts: [],
+        products: [],
       };
     case 'COMPLETE_PRODUCTS_FETCH':
       return {
         isFetching: false,
-        catalogProducts: action.products,
+        products: action.products,
       };
     case 'ADD_TO_CATALOG':
       return {
         ...state,
-        catalogProducts: [
-          ...state.catalogProducts,
+        products: [
+          ...state.products,
           action.product
         ]
       }
     case 'REMOVE_FROM_CATALOG':
       return  {
         ...state,
-        catalogProducts: state.catalogProducts.filter((product) => product.id !== action.id),
+        products: state.products.filter((product) => product.id !== action.id),
       }
     default:
       return state;

@@ -5,11 +5,13 @@ var {Route, Router, IndexRoute, hashHistory} = require('react-router');
 
 var Main = require('Main');
 var Login = require('Login');
+var Home = require('Home');
 
 var store = require('configureStore').configure();
 var actions = require('actions');
 
 store.dispatch(actions.fetchProducts());
+store.dispatch(actions.fetchFolders());
 
 var unsubscribe = store.subscribe(() => {
   const state = store.getState();
@@ -27,9 +29,10 @@ require('style!css!sass!applicationStyles');
 ReactDOM.render(
 	<Provider store={store}>
 		<Router history={hashHistory}>
-			<Route path="/" component={() => (<Main catalogOrFolder="catalog"/>)}></Route>
-			<Route path="/folder" component={() => (<Main catalogOrFolder="folder"/>)}></Route>
+			<Route path="/" component={() => (<Main navState="catalog"/>)}></Route>
+			<Route path="/folder" component={() => (<Main navState="folder"/>)}></Route>
 			<Route path="/login" component={Login}></Route>
+      <Route path="/home" component={Home}></Route>
 		</Router>
 	</Provider>,
 	document.getElementById('app')

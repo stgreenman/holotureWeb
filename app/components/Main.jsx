@@ -72,15 +72,15 @@ var Main = React.createClass({
 	},
 	render: function() {
 		var {itemCount, sideBarVisible, hideOrShow, sideBarButtonActive, productCategories, selectedCategoryId} = this.state;
-		var {catalogOrFolder} = this.props;
+		var {navState} = this.props;
 
 		var catalogOrFolderComponent = null;
-		if (catalogOrFolder === 'catalog') {
+		if (navState === 'catalog') {
 			catalogOrFolderComponent = <Catalog
 																		onAdded={this.handleOnAdded}
 																		selectedCategoryId={selectedCategoryId}/>;
 		}
-		else if (catalogOrFolder === 'folder') {
+		else if (navState === 'folder') {
 			catalogOrFolderComponent = <Folder
 																		onRemoved={this.handleOnRemoved}
 																		selectedCategoryId={selectedCategoryId}
@@ -100,7 +100,7 @@ var Main = React.createClass({
 		return (
 
 			<div>
-				<Nav itemCount={itemCount} catalogOrFolder={catalogOrFolder}/>
+				<Nav itemCount={itemCount} navState={navState}/>
 				<Button toggle onClick={this.toggleSideBarVisibility} active={sideBarButtonActive}><Icon disabled name='list layout'></Icon></Button>
 				<Sidebar.Pushable className="holoture-sidebar">
 					<Sidebar as={Menu} animation='push' width='thin' visible={sideBarVisible} vertical inverted className="sidebarFilter">

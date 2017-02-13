@@ -1,12 +1,11 @@
 var redux = require('redux');
 var thunk = require('redux-thunk').default;
-var {folderNameReducer, folderProductsReducer, catalogProductsReducer} = require('./../reducers/index');
+var {folderReducer, catalogReducer} = require('./../reducers/index');
 
 export var configure = () => {
   var reducer = redux.combineReducers({
-    folderName: folderNameReducer,
-    folderProducts: folderProductsReducer,
-    catalog: catalogProductsReducer,
+    folder: folderReducer,
+    catalog: catalogReducer,
   });
 
   var store = redux.createStore(reducer, redux.compose(

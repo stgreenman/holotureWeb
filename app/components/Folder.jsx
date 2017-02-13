@@ -12,10 +12,10 @@ var Folder = React.createClass({
   },
   handleOpenModal: function(productId) {
     var toggleOpen = ! this.state.open;
-    const productIndex = _.findIndex(this.props.folderProducts, { id: productId });
+    const productIndex = _.findIndex(this.props.folder.products, { id: productId });
     this.setState({
       open: toggleOpen,
-      selectedProduct: this.props.folderProducts[productIndex],
+      selectedProduct: this.props.folder.products[productIndex],
     });
   },
   handleCloseModal: function() {
@@ -23,9 +23,9 @@ var Folder = React.createClass({
   },
   render: function() {
     const {open, selectedProduct } = this.state;
-    const { selectedCategoryId, folderProducts }  = this.props;
+    const { selectedCategoryId, folder }  = this.props;
 
-    var productList = folderProducts.filter(function(product) {
+    var productList = folder.products.filter(function(product) {
       return product.categoryId === selectedCategoryId
                 || selectedCategoryId === undefined;
     }).map(function(product) {
@@ -59,7 +59,7 @@ var Folder = React.createClass({
 module.exports = connect(
   (state) => {
     return {
-      folderProducts: state.folderProducts,
+      folder: state.folder,
     };
   }
 )(Folder);
