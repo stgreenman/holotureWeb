@@ -7,12 +7,25 @@ var { Button, List, Input } = require('semantic-ui-react');
 var {Link} = require('react-router');
 
 var Home = React.createClass({
+  getInitialState: function() {
+    return {
+      folderText: "",
+    };
+  },
   handleOnFolderClick: function(id) {
     const {dispatch} = this.props;
     dispatch(actions.setSelectedFolder(id));
   },
   handleOnClick: function() {
     document.location.href = "/#/";
+  },
+  handleCreateFolderClick: function() {
+    const {dispatch} = this.props;
+    dispatch(actions.createNewFolder({id: Math.random(), name: this.state.folderText}));
+    this.setState({folderText: ""});
+  },
+  handleTextChange: function(event) {
+    this.setState({folderText: event.target.value});
   },
   render: function() {
     const { folder } = this.props;
@@ -40,8 +53,8 @@ var Home = React.createClass({
             Go to catalog
           </Button>
           <div className="top-padding">
-            <Button icon="plus"></Button>
-            <Input placeholder="Create new folder"></Input>
+            <Button icon="plus" onClick={this.handleCreateFolderClick}></Button>
+            <Input placeholder="Create new folder" onChange={this.handleTextChange} value={this.state.folderText}></Input>
           </div>
           <List animated selection divided verticalAlign='middle' size="big">
           <List.Header>Folders</List.Header>
