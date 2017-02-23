@@ -8,17 +8,19 @@
 
 
 .footer {
-  position: fixed;;
-  bottom: 0;
+  position: relative;;
+  bottom: 0px;
   left: 0;
   width: 100%;
   //margin-top: -50px;
-  height: 50px;
+  height: 150px;
   background-color: $nav-background;
   text-align: center;
   font-size: 1.2rem;
   font: $navFont;
-  padding: 7rem;
+  padding: 30px;
+
+
   p {
     &.slogan {
       color: #8d9093;
@@ -33,7 +35,7 @@
   }
   .links a {
     list-style: none;
-    font-weight: bold;
+
     color: $nav-text-color;
     padding: 3rem 0 2rem;
     margin: 0;

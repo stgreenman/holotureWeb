@@ -1,4 +1,6 @@
 var React = require('react');
+var Footer = require('Footer');
+var Nav = require('Nav');
 var { Button, Image, Modal, Header } = require('semantic-ui-react');
 
 var Login = React.createClass({
@@ -7,46 +9,82 @@ var Login = React.createClass({
       open: false,
     };
   },
+	handleChange(event) {
+		this.setState([value: event.target.value]);
+	},
+
+
+	hadleOnClick: function() {
+		// document.location.href = "/#/home/";
+		// alert('a name was submitted: ' + this.state.value);
+		event.preventDefault();
+		this.setState({isLoggedIn: true});
+	},
+
+	validateEmail: function (value) {
+    // regex from http://stackoverflow.com/questions/46155/validate-email-address-in-javascript
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		if (re.test(value)) {
+			return re.test(value);
+		}
+		this.props.errormessage
+  },
+	validatePassword: function () {
+    //you could do something here that does general validation for any form field
+		var re = /{1-8}/;
+
+    return re.test(value);
+  },
+
+
+
+
+
+
 	render: function() {
 		const {open} = this.state;
-
+	
 
 		return (
-			<div className = "center">
+			<div>
+				<Nav itemCount={1} navState={"home"}/>
+			<div className = "centers">
 				<h2 className="ui image header">
-					<div className="content">
-						<img src="https://s3-us-west-2.amazonaws.com/holoture/images/shortNLogo.png" alt="folder icon" height="70" width="160" className="inverted"></img>
+					<div className="contentPadding">
+
 							Log-in to your account
 					</div>
 				</h2>
 				<div>
 					<div className="column">
-		        <form className="ui large form">
+		        <form className="ui form">
 		            <div className="ui stacked segment">
 		                <div className="field">
 	                    <div className="ui left icon input">
 	                        <i className="user icon"></i>
-	                        <input type="text" name="email" placeholder="E-mail address"></input>
+	                        <input type="text" name="email" validate={this.validateEmail} errormessage="Email is invalid" onChange={this.handleChange} placeholder="E-mail address"></input>
 
                       	</div>
 	                    </div>
 	                    <div className="field">
 	                        <div className="ui left icon input">
 	                            <i className="lock icon"></i>
-	                            <input type="password" name="password" placeholder="Password"></input>
+	                            <input type="password" name="password" vlaue={this.state.value} onChange={this.handleChange} placeholder="Password"></input>
                           </div>
                     	</div>
-                  	<button className="ui fluid large teal submit button">Login</button>
+                  	<button className="ui fluid medium teal button" onClick={this.handleOnClick}>Login</button>
                   </div>
               </form>
 						</div>
           </div>
-					<Button className="ui button grey">
-						New to us?
-						<br/>
+					<Button className="ui button grey" to="/Home">
 						Sign Up
 					</Button>
       	</div>
+				<Footer/>
+				</div>
+
+
 		);
 	}
 });

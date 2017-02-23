@@ -17,11 +17,9 @@ var Footer = React.createClass({
               <a href="#">FAQ</a>
               <a href="#">Contact</a>
             </p>
-            <p className="copyright">Copyright © 2016</p>
+            <p className="copyright">Copyright © 2017</p>
           </div>
       </footer>
-
-
 		);
 	}
 });

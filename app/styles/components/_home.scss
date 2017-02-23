@@ -2,8 +2,21 @@
   align-items: center;
   justify-content: center;
   margin: 4rem auto;
+  text-align: left;
 }
 
 .top-padding {
-  margin-top: 3rem;
+  margin-top: 2rem;
+}
+
+.texting {
+  text-align: left;
+}
+
+.centering {
+  max-width: 35%;
+  align-items: center;
+  margin: 4rem auto;
+  text-align: center;
+  vertical-align: middle;
 }

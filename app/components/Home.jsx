@@ -48,18 +48,21 @@ var Home = React.createClass({
     return (
       <div>
         <Nav itemCount={1} navState={"home"}/>
-        <div className="center">
-          <Button className="ui button blue" onClick={this.handleOnClick}>
+        <div className="centering">
+          <Button className="ui button teal" onClick={this.handleOnClick}>
             Go to catalog
           </Button>
+
           <div className="top-padding">
             <Button icon="plus" onClick={this.handleCreateFolderClick}></Button>
             <Input placeholder="Create new folder" onChange={this.handleTextChange} value={this.state.folderText}></Input>
           </div>
+          <div className="texting">
           <List animated selection divided verticalAlign='middle' size="big">
           <List.Header>Folders</List.Header>
           { listItems }
           </List>
+          </div>
         </div>
         <Footer/>
       </div>

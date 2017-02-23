@@ -1,5 +1,15 @@
-.center {
-  max-width: 50%;
+.centers {
+  max-width: 30%;
   align-items: center;
   margin: 4rem auto;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.back {
+  background-color: black;
+}
+
+.contentPadding {
+  padding-top: 6rem;
 }
