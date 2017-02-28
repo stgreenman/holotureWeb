@@ -49,6 +49,21 @@ var Main = React.createClass({
 				},
 				{
 					id: 2,
+					name: "Beds",
+					active: false,
+				},
+				{
+					id: 3,
+					name: "Desks",
+					active: false,
+				},
+				{
+					id: 4,
+					name: "Decor",
+					active: false,
+				},
+				{
+					id: 5,
 					name: "Tables",
 					active: false,
 				}
