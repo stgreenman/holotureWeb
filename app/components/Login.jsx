@@ -2,6 +2,7 @@ var React = require('react');
 var Footer = require('Footer');
 var Nav = require('Nav');
 var { Button, Image, Modal, Header } = require('semantic-ui-react');
+var { hashHistory } = require('react-router');
 
 var Login = React.createClass({
 	getInitialState: function(){
@@ -12,15 +13,9 @@ var Login = React.createClass({
 	handleChange(event) {
 		this.setState([value: event.target.value]);
 	},
-
-
-	hadleOnClick: function() {
-		// document.location.href = "/#/home/";
-		// alert('a name was submitted: ' + this.state.value);
-		event.preventDefault();
-		this.setState({isLoggedIn: true});
+	handleOnClick: function() {
+		hashHistory.push('/home');
 	},
-
 	validateEmail: function (value) {
     // regex from http://stackoverflow.com/questions/46155/validate-email-address-in-javascript
     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -35,15 +30,9 @@ var Login = React.createClass({
 
     return re.test(value);
   },
-
-
-
-
-
-
 	render: function() {
 		const {open} = this.state;
-	
+
 
 		return (
 			<div>
@@ -57,7 +46,7 @@ var Login = React.createClass({
 				</h2>
 				<div>
 					<div className="column">
-		        <form className="ui form">
+		        <div className="ui form">
 		            <div className="ui stacked segment">
 		                <div className="field">
 	                    <div className="ui left icon input">
@@ -74,14 +63,14 @@ var Login = React.createClass({
                     	</div>
                   	<button className="ui fluid medium teal button" onClick={this.handleOnClick}>Login</button>
                   </div>
-              </form>
+              </div>
 						</div>
           </div>
 					<Button className="ui button grey" to="/Home">
 						Sign Up
 					</Button>
       	</div>
-				<Footer/>
+				<Footer type="fixed"/>
 				</div>
 
 

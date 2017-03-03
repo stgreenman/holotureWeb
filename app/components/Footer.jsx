@@ -2,11 +2,11 @@ var React = require('react');
 
 var Footer = React.createClass({
 	render: function() {
+		const {type} = this.props;
+		const footerClass = "footer-" + type;
+
 		return (
-
-
-
-      <footer className="footer">
+      <footer className={footerClass}>
           <div className="small-12 columns">
             <img src="https://s3-us-west-2.amazonaws.com/holoture/images/shortNLogo.png" alt="holoture name logo" className="inverted" hight="70" width="160"></img>
             <p className="links">

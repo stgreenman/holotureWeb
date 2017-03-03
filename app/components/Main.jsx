@@ -129,7 +129,7 @@ var Main = React.createClass({
 						</div>
 					</Sidebar.Pusher>
 				</Sidebar.Pushable>
-				<Footer/>
+				<Footer type="relative"/>
 			</div>
 		);
 	}
