@@ -70,7 +70,7 @@ var Login = React.createClass({
 						Sign Up
 					</Button>
       	</div>
-				<Footer type="fixed"/>
+				<Footer type="relative"/>
 				</div>
 
 

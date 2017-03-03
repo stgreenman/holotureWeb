@@ -64,7 +64,7 @@ var Home = React.createClass({
           </List>
           </div>
         </div>
-        <Footer type="fixed"/>
+        <Footer type="relative"/>
       </div>
     );
   }
