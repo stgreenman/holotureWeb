@@ -49,6 +49,11 @@ export var folderReducer = (state = defaultState, action) => {
         ...state,
         products: state.products.filter((product) => product.id !== action.id)
       }
+    case 'POPULATE_FOLDER':
+      return {
+        ...state,
+        products: action.products
+      }
     default:
      return state;
   }

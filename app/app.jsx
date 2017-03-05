@@ -12,6 +12,7 @@ var actions = require('actions');
 
 store.dispatch(actions.fetchProducts());
 store.dispatch(actions.fetchFolders());
+store.dispatch(actions.setSelectedFolder(1));
 
 var unsubscribe = store.subscribe(() => {
   const state = store.getState();

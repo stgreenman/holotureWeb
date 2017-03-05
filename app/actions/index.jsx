@@ -57,10 +57,26 @@ export var createNewFolder = (folder) => {
   };
 };
 
-export var setSelectedFolder = (id) => {
+export var updateSelectedFolderState = (id) => {
   return {
     type: 'SET_SELECTED_FOLDER',
     id
+  };
+};
+
+export var populateFolder = (products) => {
+  return {
+    type: 'POPULATE_FOLDER',
+    products
+  };
+};
+
+export var setSelectedFolder = (id) => {
+  return (dispatch, getState) => {
+    axios.get("/api/getFolderProducts?folderId=" + id).then(function (res) {
+      dispatch(updateSelectedFolderState(id));
+      dispatch(populateFolder(res.data));
+    });
   };
 };
 

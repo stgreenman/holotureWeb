@@ -8,5 +8,7 @@ module.exports = function(app) {
   apiRoutes.get('/getCatalog', _apiController.getCatalog);
   apiRoutes.get('/getFolders', _apiController.getFolders);
   apiRoutes.post('/createFolder', _apiController.createFolder);
+  apiRoutes.post('/addProductToFolder', _apiController.addProductToFolder);
+  apiRoutes.get('/getFolderProducts', _apiController.getFolderProducts);
   apiRoutes.get('/customerRegistry', _apiController.getCustomerRegistry);
 }
