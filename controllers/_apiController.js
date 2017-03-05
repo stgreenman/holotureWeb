@@ -1,10 +1,9 @@
 var sql = require('mssql');
 
 // connection string "mssql://capstone:<PASSWORD>@holoture.database.windows.net/Holoture?encrypt=true";
-
 var config = {
   user: 'capstone',
-  password: '',
+  password: process.env.DB_PASS,
   server: 'holoture.database.windows.net',
   database: 'Holoture',
   options: {
@@ -127,6 +126,31 @@ exports.addProductToFolder = function(req, res, next) {
           .input('folderId', sql.Int, post.folderId)
           .input('productId', sql.Int, post.productId)
           .query('INSERT INTO FolderHasProduct (folderId, productId) VALUES (@folderId, @productId)')
+          .then(function(folder) {
+          res.status(200).json({"success": true});
+        }).catch(function(err) {
+            res.status(500).json({"err": err});
+        });
+    }
+  });
+};
+
+exports.removeProductFromFolder = function(req, res, next) {
+  var body = '';
+  req.on('data', function (data) {
+    body += data;
+
+    if (body.length > 1e6)
+      req.connection.destroy();
+  });
+
+  req.on('end', function() {
+    var post = JSON.parse(body);
+    if (post.name !== "") {
+        new sql.Request(connection)
+          .input('folderId', sql.Int, post.folderId)
+          .input('productId', sql.Int, post.productId)
+          .query('DELETE FROM FolderHasProduct WHERE folderId = @folderId AND productId = @productId')
           .then(function(folder) {
           res.status(200).json({"success": true});
         }).catch(function(err) {

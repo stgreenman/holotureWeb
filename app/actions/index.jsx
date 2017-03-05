@@ -131,9 +131,22 @@ export var addToFolder = (product) => {
   };
 };
 
-export var removeFromFolder = (id) => {
+export var finishRemoveFromFolder = (id) => {
   return {
     type: 'REMOVE_FROM_FOLDER',
     id
   }
+};
+
+export var removeFromFolder = (id) => {
+  return (dispatch, getState) => {
+    const state = getState();
+    const selectedFolderId = state.folder.selectedFolderId;
+    axios.post('/api/removeProductFromFolder', {
+      folderId: selectedFolderId,
+      productId: id
+    }).then(function (res) {
+      dispatch(finishRemoveFromFolder(id));
+    });
+  };
 };
