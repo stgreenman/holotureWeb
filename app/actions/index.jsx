@@ -42,10 +42,18 @@ export var fetchProducts = () => {
 
 // Folder Reducer actions
 
-export var createNewFolder = (folder) => {
+export var finishFolderCreation = (folder) => {
   return {
     type: 'CREATE_NEW_FOLDER',
     folder
+  };
+};
+
+export var createNewFolder = (folder) => {
+  return (dispatch, getState) => {
+    axios.post('/api/createFolder', folder).then(function (res) {
+      dispatch(finishFolderCreation(folder));
+    });
   };
 };
 
@@ -87,11 +95,24 @@ export var fetchFolders = () => {
   };
 };
 
-export var addToFolder = (product) => {
+export var finishAddToFolder = (product) => {
   return {
     type: 'ADD_TO_FOLDER',
     product
   }
+};
+
+export var addToFolder = (product) => {
+  return (dispatch, getState) => {
+    const state = getState();
+    const selectedFolderId = state.folder.selectedFolderId;
+    axios.post('/api/addProductToFolder', {
+      folderId: selectedFolderId,
+      productId: product.id,
+    }).then(function (res) {
+      dispatch(finishAddToFolder(product));
+    });
+  };
 };
 
 export var removeFromFolder = (id) => {
