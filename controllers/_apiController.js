@@ -2,7 +2,7 @@ var sql = require('mssql');
 
 // connection string "mssql://capstone:<PASSWORD>@holoture.database.windows.net/Holoture?encrypt=true";
 var config = {
-  user: 'capstone',
+  user: process.env.DB_USER,
   password: process.env.DB_PASS,
   server: 'holoture.database.windows.net',
   database: 'Holoture',
