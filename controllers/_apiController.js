@@ -14,65 +14,6 @@ var config = {
 var connection = new sql.Connection(config);
 connection.connect();
 
-const customerRegistry = {
-  customerList:[
-    {
-      CustomerName:"Jim",
-      CustomerID:0,
-      furnPrefs:[
-        {
-          FurnitureID:1,
-          MaterialIDs:[1,2,2,2,2,2,2,2,2]
-        },
-        {
-          FurnitureID:2,
-          MaterialIDs:[1,2]
-        },
-        {
-          FurnitureID:2,
-          MaterialIDs:[1,2]
-        },
-        {
-          FurnitureID:2,
-          MaterialIDs:[1,2]
-        },
-        {
-          FurnitureID:2,
-          MaterialIDs:[1,2]
-        },
-        {
-          FurnitureID:2,
-          MaterialIDs:[1,2]
-        },
-        {
-          FurnitureID:2,
-          MaterialIDs:[1,2]
-        },
-        {
-          FurnitureID:2,
-          MaterialIDs:[1,2]
-        },
-        {
-          FurnitureID:2,
-          MaterialIDs:[1,2]
-        },
-        {
-          FurnitureID:2,
-          MaterialIDs:[1,2]
-        },
-        {
-          FurnitureID:2,
-          MaterialIDs:[1,2]
-        },
-        {
-          FurnitureID:2,
-          MaterialIDs:[1,2]
-        }
-      ]
-    }
-  ]
-};
-
 exports.getCatalog = function(req, res, next) {
     new sql.Request(connection).query('SELECT * FROM Product').then(function(products) {
         res.status(200).json(products);
@@ -172,5 +113,33 @@ exports.getFolderProducts = function(req, res, next) {
 };
 
 exports.getCustomerRegistry = function(req, res, next) {
-  res.status(200).json(customerRegistry);
+  new sql.Request(connection)
+    .input('folderId', sql.Int, 1)
+    .query('SELECT ProductHasMaterial.* FROM FolderHasProduct JOIN ProductHasMaterial ON FolderHasProduct.productId = ProductHasMaterial.productId WHERE FolderHasProduct.folderId = @folderId;')
+    .then(function(products) {
+      var response = {};
+      response.customerList = {};
+      response.customerList.CustomerName = "Logan";
+      response.customerList.CustomerID = 1;
+      response.customerList.furnPrefs = [];
+
+      var furniture = [];
+      products.forEach(function (val) {
+        if (furniture[val.productId]) {
+          furniture[val.productId].push(val.materialId);
+        }
+        else {
+          furniture[val.productId] = [val.materialId];
+        }
+      });
+      for (var k in furniture) {
+        response.customerList.furnPrefs.push({
+          "FurnitureID": k,
+          "MaterialIDs": furniture[k],
+        });
+      }
+      res.status(200).json(response);
+  }).catch(function(err) {
+      res.status(500).json({"err": err});
+  });
 }
