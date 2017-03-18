@@ -134,7 +134,7 @@ exports.getCustomerRegistry = function(req, res, next) {
       });
       for (var k in furniture) {
         response.customerList.furnPrefs.push({
-          "FurnitureID": k,
+          "FurnitureID": parseInt(k),
           "MaterialIDs": furniture[k],
         });
       }
