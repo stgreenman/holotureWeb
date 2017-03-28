@@ -118,10 +118,11 @@ exports.getCustomerRegistry = function(req, res, next) {
     .query('SELECT ProductHasMaterial.* FROM FolderHasProduct JOIN ProductHasMaterial ON FolderHasProduct.productId = ProductHasMaterial.productId WHERE FolderHasProduct.folderId = @folderId;')
     .then(function(products) {
       var response = {};
-      response.customerList = {};
-      response.customerList.CustomerName = "Logan";
-      response.customerList.CustomerID = 1;
-      response.customerList.furnPrefs = [];
+      response.customerList = [];
+      var customer = {};
+      customer.CustomerName = "Logan";
+      customer.CustomerID = 1;
+      customer.furnPrefs = [];
 
       var furniture = [];
       products.forEach(function (val) {
@@ -133,11 +134,12 @@ exports.getCustomerRegistry = function(req, res, next) {
         }
       });
       for (var k in furniture) {
-        response.customerList.furnPrefs.push({
+        customer.furnPrefs.push({
           "FurnitureID": parseInt(k),
           "MaterialIDs": furniture[k],
         });
       }
+      response.customerList.push(customer);
       res.status(200).json(response);
   }).catch(function(err) {
       res.status(500).json({"err": err});
